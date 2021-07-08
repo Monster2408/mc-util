@@ -1,4 +1,4 @@
-package xyz.mlserver;
+﻿package xyz.mlserver.minecraft;
 
 import java.io.File;
 import java.io.IOException;
