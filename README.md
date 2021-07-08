@@ -1,1 +1,1 @@
-# MonsterLifeServerの前提プラグイン
+# Minecraft用
