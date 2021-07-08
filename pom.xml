@@ -13,4 +13,12 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>mc-util</name>
+            <url>https://maven.pkg.github.com/Monster2408/mc-util</url>
+        </repository>
+    </distributionManagement>
+
 </project>
