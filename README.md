@@ -1,0 +1,1 @@
+# MonsterLifeServerの前提プラグイン
