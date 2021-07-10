@@ -12,17 +12,17 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
-public class CustomConfig {
+public class CustomConfiguration {
     private FileConfiguration config;
     private final File configFile;
     private final String file;
     private final Plugin plugin;
 
-    public CustomConfig(Plugin plugin) {
+    public CustomConfiguration(Plugin plugin) {
         this(plugin, "config.yml");
     }
 
-    public CustomConfig(Plugin plugin, String fileName) {
+    public CustomConfiguration(Plugin plugin, String fileName) {
         this.config = null;
         this.plugin = plugin;
         this.file = fileName;
@@ -62,6 +62,16 @@ public class CustomConfig {
 
         }
     }
+
+    public void reset() {
+        if (config == null) {
+            reloadConfig();
+        }
+        for(String key : config.getKeys(false)){
+            getConfig().set(key,null);
+        }
+    }
+
 
     public void setLocation(String path, Location loc) {
         if (this.config == null) {

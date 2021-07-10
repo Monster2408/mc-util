@@ -1,4 +1,4 @@
-name: Publish jl2-web library
+name: Publish relese-maven library
 on: [ workflow_dispatch ]
 jobs:
     build:

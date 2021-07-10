@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>xyz.mlserver</groupId>
-    <artifactId>mc-util</artifactId>
-    <version>1.0</version>
+    <artifactId>minecraft</artifactId>
+    <version>1.1</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -24,7 +24,7 @@
         <repository>
             <id>github</id>
             <name>mc-util</name>
-            <url>https://maven.pkg.github.com/Monster2408/mc-util</url>
+            <url>https://maven.pkg.github.com/Monster2408/repo.mlserver.xyz</url>
         </repository>
     </distributionManagement>
 
@@ -37,12 +37,37 @@
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
+
+        <repository>
+            <id>acrylic-repo2</id>
+            <url>https://repo2.acrylicstyle.xyz/</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
+            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.cryptomorin</groupId>
+            <artifactId>XSeries</artifactId>
+            <version>7.9.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>xyz.acrylicstyle</groupId>
+            <artifactId>minecraft-util</artifactId>
+            <version>0.2.7</version>
+        </dependency>
+
+        <!--CraftBukkit API-->
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
             <version>1.12.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
