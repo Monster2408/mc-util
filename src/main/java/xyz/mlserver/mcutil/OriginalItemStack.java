@@ -1,16 +1,18 @@
 package xyz.mlserver.mcutil;
 
+import com.comphenix.protocol.wrappers.WrappedGameProfile;
+import com.comphenix.protocol.wrappers.WrappedSignedProperty;
 import com.cryptomorin.xseries.XMaterial;
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import xyz.mlserver.mcutil.skull.SkullVar;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -42,16 +44,17 @@ public class OriginalItemStack {
         return item;
     }
 
-    public static ItemStack createSkull(int size, String name, String url) {
+    public static ItemStack createSkull(int size, String name, String value, String signature) {
         ItemStack head = new ItemStack(Objects.requireNonNull(XMaterial.PLAYER_HEAD.parseMaterial()), size, (short) 3);
-        if (url.isEmpty())
+        if (value.isEmpty() || signature.isEmpty())
             return head;
 
         SkullMeta headMeta = (SkullMeta) head.getItemMeta();
         headMeta.setDisplayName(name);
-        GameProfile profile = new GameProfile(UUID.randomUUID(), null);
 
-        profile.getProperties().put("textures", new Property("textures", url));
+
+        WrappedGameProfile profile = new WrappedGameProfile(UUID.randomUUID(), null);
+        profile.getProperties().put("textures", new WrappedSignedProperty("textures", value, signature));
 
         try {
             Field profileField = headMeta.getClass().getDeclaredField("profile");
