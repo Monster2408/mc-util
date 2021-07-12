@@ -1,4 +1,4 @@
-package xyz.mlserver.minecraft;
+package xyz.mlserver.mcutil;
 
 import xyz.acrylicstyle.mcutil.lang.MCVersion;
 

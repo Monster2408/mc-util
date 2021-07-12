@@ -1,4 +1,4 @@
-package xyz.mlserver.minecraft;
+package xyz.mlserver.mcutil;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.mojang.authlib.GameProfile;
