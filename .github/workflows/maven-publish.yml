@@ -1,5 +1,5 @@
 name: Publish relese-maven library
-on: [ workflow_dispatch ]
+on: [ push ]
 jobs:
     build:
         runs-on: ubuntu-latest
