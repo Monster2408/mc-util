@@ -49,4 +49,22 @@ public class MySQLUtil {
         }
     }
 
+    public static void openStaticConnection() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                return;
+            }
+
+            synchronized (EventUtil.class) {
+                if (connection != null && !connection.isClosed()) {
+                    return;
+                }
+                Class.forName("com.mysql.jdbc.Driver");
+                connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database + "?useSSL=false&useLegacyDatetimeCode=false&autoReconnect=true&serverTimezone=JST", username, password);
+            }
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
 }
