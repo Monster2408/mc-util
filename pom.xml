@@ -54,12 +54,6 @@
             <id>viaversion-repo</id>
             <url>https://repo.viaversion.com</url>
         </repository>
-
-        <!-- Javaのやつ -->
-        <repository>
-            <id>acrylic-repo2</id>
-            <url>https://repo2.acrylicstyle.xyz</url>
-        </repository>
     </repositories>
 
     <dependencies>
