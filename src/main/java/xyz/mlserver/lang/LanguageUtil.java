@@ -105,13 +105,11 @@ public class LanguageUtil {
         String uuid = player.getUniqueId().toString();
         Inventory gui = Bukkit.createInventory(null , 9, LANGUAGE_GUI.get(uuid));
 
-
-
         ItemStack noClick, japaneseIcon,englishIcon;
 
         noClick = OriginalItemStack.createItem(XMaterial.GREEN_STAINED_GLASS_PANE.parseMaterial(), 1, " ");
-        japaneseIcon = OriginalItemStack.createSkull(1, Language.JAPANESE.getName(), SkullVar.JAPAN_VALUE, SkullVar.JAPAN_SIGNATURE);
-        englishIcon = OriginalItemStack.createSkull(1, Language.ENGLISH.getName(), SkullVar.US_VALUE, SkullVar.US_SIGNATURE);
+        japaneseIcon = OriginalItemStack.createSkull(1, Language.JAPANESE.getName(), SkullVar.JAPAN_URL);
+        englishIcon = OriginalItemStack.createSkull(1, Language.ENGLISH.getName(), SkullVar.US_URL);
 
         for (int i = 0; i < 9; i++) {
             gui.setItem(i, noClick);

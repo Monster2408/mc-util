@@ -3,6 +3,7 @@ package xyz.mlserver.mcutil;
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
 import com.comphenix.protocol.wrappers.WrappedSignedProperty;
 import com.cryptomorin.xseries.XMaterial;
+import dev.dbassett.skullcreator.SkullCreator;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -52,8 +53,7 @@ public class OriginalItemStack {
         SkullMeta headMeta = (SkullMeta) head.getItemMeta();
         headMeta.setDisplayName(name);
 
-
-        WrappedGameProfile profile = new WrappedGameProfile(UUID.randomUUID(), null);
+        WrappedGameProfile profile = new WrappedGameProfile(UUID.randomUUID(), name);
         profile.getProperties().put("textures", new WrappedSignedProperty("textures", value, signature));
 
         try {
@@ -66,6 +66,17 @@ public class OriginalItemStack {
         }
         head.setItemMeta(headMeta);
         return head;
+    }
+
+    public static ItemStack createSkull(int size, String name, String url) {
+        ItemStack item = SkullCreator.createSkull();
+        if (url.isEmpty()) return item;
+        item = SkullCreator.itemFromUrl(url);
+        ItemMeta meta = item.getItemMeta();
+        if (!name.isEmpty()) meta.setDisplayName(name);
+        item.setItemMeta(meta);
+        item.setAmount(size);
+        return item;
     }
 
     public static ItemStack addBookEnchantment(ItemStack item, Enchantment enchantment, int level){

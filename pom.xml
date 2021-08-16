@@ -6,7 +6,7 @@
 
     <groupId>xyz.mlserver</groupId>
     <artifactId>minecraft</artifactId>
-    <version>1.2.6</version>
+    <version>1.2.7</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -54,9 +54,16 @@
             <id>viaversion-repo</id>
             <url>https://repo.viaversion.com</url>
         </repository>
+
+        <!-- SkullCreator -->
+        <repository>
+            <id>skullcreator-repo</id>
+            <url>https://github.com/deanveloper/SkullCreator/raw/mvn-repo/</url>
+        </repository>
     </repositories>
 
     <dependencies>
+
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
@@ -65,9 +72,16 @@
         </dependency>
 
         <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
+            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
             <groupId>com.github.cryptomorin</groupId>
             <artifactId>XSeries</artifactId>
-            <version>7.9.1.1</version>
+            <version>8.3.0</version>
         </dependency>
 
         <dependency>
@@ -95,6 +109,14 @@
             <groupId>xyz.acrylicstyle</groupId>
             <artifactId>java-util-all</artifactId>
             <version>0.15.4</version>
+        </dependency>
+
+        <!-- SkullCreator -->
+        <dependency>
+            <groupId>dev.dbassett</groupId>
+            <artifactId>skullcreator</artifactId>
+            <version>3.0.1</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>
