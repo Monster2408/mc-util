@@ -3,13 +3,17 @@ package xyz.mlserver.lang;
 import com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
+import dev.dbassett.skullcreator.SkullCreator;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import xyz.mlserver.java.MySQLUtil;
 import xyz.mlserver.mcutil.OriginalItemStack;
 import xyz.mlserver.mcutil.skull.SkullVar;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -106,10 +110,18 @@ public class LanguageUtil {
         Inventory gui = Bukkit.createInventory(null , 9, LANGUAGE_GUI.get(uuid));
 
         ItemStack noClick, japaneseIcon,englishIcon;
+        ItemMeta meta;
 
         noClick = OriginalItemStack.createItem(XMaterial.GREEN_STAINED_GLASS_PANE.parseMaterial(), 1, " ");
-        japaneseIcon = OriginalItemStack.createSkull(1, Language.JAPANESE.getName(), SkullVar.JAPAN_URL);
-        englishIcon = OriginalItemStack.createSkull(1, Language.ENGLISH.getName(), SkullVar.US_URL);
+        japaneseIcon = SkullCreator.itemFromUrl(SkullVar.JAPAN_URL);
+        meta = japaneseIcon.getItemMeta();
+        meta.setDisplayName(Language.JAPANESE.getName());
+        japaneseIcon.setItemMeta(meta);
+
+        englishIcon = SkullCreator.itemFromUrl(SkullVar.US_URL);
+        meta = englishIcon.getItemMeta();
+        meta.setDisplayName(Language.ENGLISH.getName());
+        englishIcon.setItemMeta(meta);
 
         for (int i = 0; i < 9; i++) {
             gui.setItem(i, noClick);
