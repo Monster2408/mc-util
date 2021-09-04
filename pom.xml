@@ -6,7 +6,7 @@
 
     <groupId>xyz.mlserver</groupId>
     <artifactId>minecraft</artifactId>
-    <version>1.3.0-SNAPSHOT</version>
+    <version>1.3.0-BETA_01</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
