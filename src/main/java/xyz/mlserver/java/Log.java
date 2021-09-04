@@ -2,7 +2,7 @@ package xyz.mlserver.java;
 
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
-import util.Validate;
+import xyz.mlserver.util.Validate;
 
 public class Log {
     @NotNull
