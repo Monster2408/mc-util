@@ -12,39 +12,59 @@ import java.util.Map;
 @SuppressWarnings({ "unused", "RedundantSuppression" })
 public enum MCVersion {
     @IgnoreTest("marker version (not released yet)")
-    v1_17(0, 0, true, "1.17"), // unreleased
-    SNAPSHOT_20W51A(0x40000009, 2687, v1_17, "20w51a"),
-    SNAPSHOT_20W49A(0x40000008, 2685, v1_17, "20w49a"),
-    SNAPSHOT_20W48A(0x40000007, 2683, v1_17, "20w48a"),
+
+    v1_18                        (1,          1,    true,       "1.18"), // not released; set to release in late 2021. Caves & Cliffs: Part II
+    v1_18_EXPERIMENTAL_SNAPSHOT_5(0x4000002D, 2829, true, v1_18,"1.18_experimental-snapshot-5"),
+    v1_18_EXPERIMENTAL_SNAPSHOT_4(0x4000002C, 2828, true, v1_18,"1.18_experimental-snapshot-4"),
+    v1_18_EXPERIMENTAL_SNAPSHOT_3(0x4000002B, 2827, true, v1_18,"1.18_experimental-snapshot-3"),
+    v1_18_EXPERIMENTAL_SNAPSHOT_2(0x4000002A, 2826, true, v1_18,"1.18_experimental-snapshot-2"),
+    v1_18_EXPERIMENTAL_SNAPSHOT_1(0x40000029, 2825, true, v1_18,"1.18_experimental-snapshot-1"),
+
+    v1_17_1     (756,        2730, true,         "1.17.1"),
+    v1_17_1_RC2 (0x40000028, 2729, true, v1_17_1,"1.17.1-rc2"),
+    v1_17_1_RC1 (0x40000027, 2728, true, v1_17_1,"1.17.1-rc1"),
+    v1_17_1_PRE3(0x40000026, 2727, true, v1_17_1,"1.17.1-pre3"),
+    v1_17_1_PRE2(0x40000025, 2726, true, v1_17_1,"1.17.1-pre2"),
+    v1_17_1_PRE1(0x40000024, 2725, true, v1_17_1,"1.17.1-pre1"),
+    
+    v1_17          (755,        2724, true,        "1.17"), // unreleased
+    SNAPSHOT_20W51A(0x40000009, 2687, true, v1_17, "20w51a"),
+    SNAPSHOT_20W49A(0x40000008, 2685, true, v1_17, "20w49a"),
+    SNAPSHOT_20W48A(0x40000007, 2683, true, v1_17, "20w48a"),
     SNAPSHOT_20W46A(0x40000006, 2682, true, v1_17, "20w46a"),
     SNAPSHOT_20W45A(0x40000005, 2681, true, v1_17, "20w45a"),
-    v1_16_4(754, 2584, true, "1.16.4"),
-    v1_16_4_RC1(0x40000003, 2583, true, "1.16.4-rc1"),
+
+    v1_16_4     (754,        2584, true, "1.16.4"),
+    v1_16_4_RC1 (0x40000003, 2583, true, "1.16.4-rc1"),
     v1_16_4_PRE2(0x40000002, 2582, true, "1.16.4-pre2"),
     v1_16_4_PRE1(0x40000001, 2581, true, "1.16.4-pre1"), // New network protocol scheme, with a high bit (bit 30) set for snapshots.
-    v1_16_3(753, 2580, true, "1.16.3"),
+
+    v1_16_3    (753, 2580, true,          "1.16.3"),
     v1_16_3_RC1(752, 2579, true, v1_16_3, "1.16.3-rc1"),
-    v1_16_2(751, 2578, true, "1.16.2"),
-    v1_16_2_RC2(750, 2577, true, v1_16_2, "1.16.2-rc2"),
-    v1_16_2_RC1(749, 2576, true, v1_16_2, "1.16.2-rc1"),
-    v1_16_2_PRE3(748, 2575, true, v1_16_2, "1.16.2-pre3"),
-    v1_16_2_PRE2(746, 2574, true, v1_16_2, "1.16.2-pre2"),
-    v1_16_2_PRE1(744, 2573, true, v1_16_2, "1.16.2-pre1"),
+
+    v1_16_2        (751, 2578, true,          "1.16.2"),
+    v1_16_2_RC2    (750, 2577, true, v1_16_2, "1.16.2-rc2"),
+    v1_16_2_RC1    (749, 2576, true, v1_16_2, "1.16.2-rc1"),
+    v1_16_2_PRE3   (748, 2575, true, v1_16_2, "1.16.2-pre3"),
+    v1_16_2_PRE2   (746, 2574, true, v1_16_2, "1.16.2-pre2"),
+    v1_16_2_PRE1   (744, 2573, true, v1_16_2, "1.16.2-pre1"),
     SNAPSHOT_20W30A(742, 2572, true, v1_16_2, "20w30a"),
     SNAPSHOT_20W29A(741, 2571, true, v1_16_2, "20w29a"),
     SNAPSHOT_20W28A(740, 2570, true, v1_16_2, "20w28a"),
     SNAPSHOT_20W27A(738, 2569, true, v1_16_2, "20w27a"),
+
     v1_16_1(736, 2567, true, "1.16.1"),
-    v1_16(735, 2566, true, "1.16"),
-    v1_16_RC1(734, 2565, true, v1_16, "1.16-rc1"),
-    v1_16_PRE8(733, 2564, true, v1_16, "1.16-pre8"),
-    v1_16_PRE7(732, 2563, true, v1_16, "1.16-pre7"),
-    v1_16_PRE6(730, 2562, true, v1_16, "1.16-pre6"),
-    v1_16_PRE5(729, 2561, true, v1_16, "1.16-pre5"),
-    v1_16_PRE4(727, 2560, true, v1_16, "1.16-pre4"),
-    v1_16_PRE3(725, 2559, true, v1_16, "1.16-pre3"),
-    v1_16_PRE2(722, 2557, true, v1_16, "1.16-pre2"),
-    v1_16_PRE1(721, 2556, true, v1_16, "1.16-pre1"),
+
+    v1_16          (735, 2566, true, "1.16"),
+    v1_16_RC1      (734, 2565, true, v1_16, "1.16-rc1"),
+    v1_16_PRE8     (733, 2564, true, v1_16, "1.16-pre8"),
+    v1_16_PRE7     (732, 2563, true, v1_16, "1.16-pre7"),
+    v1_16_PRE6     (730, 2562, true, v1_16, "1.16-pre6"),
+    v1_16_PRE5     (729, 2561, true, v1_16, "1.16-pre5"),
+    v1_16_PRE4     (727, 2560, true, v1_16, "1.16-pre4"),
+    v1_16_PRE3     (725, 2559, true, v1_16, "1.16-pre3"),
+    v1_16_PRE2     (722, 2557, true, v1_16, "1.16-pre2"),
+    v1_16_PRE1     (721, 2556, true, v1_16, "1.16-pre1"),
     SNAPSHOT_20W22A(719, 2555, true, v1_16, "20w22a"),
     SNAPSHOT_20W21A(718, 2554, true, v1_16, "20w21a"),
     SNAPSHOT_20W20B(717, 2537, true, v1_16, "20w20b"),
@@ -55,7 +75,7 @@ public enum MCVersion {
     SNAPSHOT_20W16A(712, 2526, true, v1_16, "20w16a"),
     SNAPSHOT_20W15A(711, 2525, true, v1_16, "20w15a"),
     SNAPSHOT_20W14A(710, 2524, true, v1_16, "20w14a"),
-    SNAPSHOT_20W14(709, 2522, true, null, true, "20w14∞"), // april fool
+    SNAPSHOT_20W14 (709, 2522, true, null, true, "20w14∞"), // april fool
     SNAPSHOT_20W13B(709, 2521, true, v1_16, "20w13b"),
     SNAPSHOT_20W13A(708, 2520, true, v1_16, "20w13a"),
     SNAPSHOT_20W12A(707, 2515, true, v1_16, "20w12a"),
@@ -65,6 +85,7 @@ public enum MCVersion {
     SNAPSHOT_20W08A(703, 2507, true, v1_16, "20w08a"),
     SNAPSHOT_20W07A(702, 2506, true, v1_16, "20w07a"),
     SNAPSHOT_20W06A(701, 2504, true, v1_16, "20w06a"),
+
     v1_15_2(578, 2230, true, "1.15.2"),
     v1_15_2_PRE2(577, 2229, true, v1_15_2, "1.15.2-pre2"),
     v1_15_2_PRE1(576, 2228, true, v1_15_2, "1.15.2-pre1"),
