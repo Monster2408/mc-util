@@ -11,9 +11,17 @@ import java.util.Map;
 
 @SuppressWarnings({ "unused", "RedundantSuppression" })
 public enum MCVersion {
+
+    /*
+        参考
+        https://minecraft.fandom.com/wiki/Protocol_version#Java_Edition
+    */
+
     @IgnoreTest("marker version (not released yet)")
 
     v1_18                        (1,          1,    true,       "1.18"), // not released; set to release in late 2021. Caves & Cliffs: Part II
+    v1_18_EXPERIMENTAL_SNAPSHOT_7(0x4000002F, 2831, true, v1_18,"1.18_experimental-snapshot-5"),
+    v1_18_EXPERIMENTAL_SNAPSHOT_6(0x4000002E, 2830, true, v1_18,"1.18_experimental-snapshot-4"),
     v1_18_EXPERIMENTAL_SNAPSHOT_5(0x4000002D, 2829, true, v1_18,"1.18_experimental-snapshot-5"),
     v1_18_EXPERIMENTAL_SNAPSHOT_4(0x4000002C, 2828, true, v1_18,"1.18_experimental-snapshot-4"),
     v1_18_EXPERIMENTAL_SNAPSHOT_3(0x4000002B, 2827, true, v1_18,"1.18_experimental-snapshot-3"),
@@ -26,13 +34,40 @@ public enum MCVersion {
     v1_17_1_PRE3(0x40000026, 2727, true, v1_17_1,"1.17.1-pre3"),
     v1_17_1_PRE2(0x40000025, 2726, true, v1_17_1,"1.17.1-pre2"),
     v1_17_1_PRE1(0x40000024, 2725, true, v1_17_1,"1.17.1-pre1"),
-    
+
     v1_17          (755,        2724, true,        "1.17"), // unreleased
+    v1_17_RC2      (0x40000023, 2723, true, v1_17, "1.17-rc2"),
+    v1_17_RC1      (0x40000022, 2722, true, v1_17, "1.17-rc1"),
+    v1_17_PRE5     (0x40000021, 2721, true, v1_17, "1.17-pre5"),
+    v1_17_PRE4     (0x40000020, 2720, true, v1_17, "1.17-pre4"),
+    v1_17_PRE3     (0x4000001F, 2719, true, v1_17, "1.17-pre3"),
+    v1_17_PRE2     (0x4000001E, 2718, true, v1_17, "1.17-pre2"),
+    v1_17_PRE1     (0x4000001D, 2716, true, v1_17, "1.17-pre1"),
+    SNAPSHOT_21W20A(0x4000001C, 2715, true, v1_17, "21w20a"),
+    SNAPSHOT_21W19A(0x4000001B, 2714, true, v1_17, "21w19a"),
+    SNAPSHOT_21W18A(0x4000001A, 2713, true, v1_17, "21w18a"),
+    SNAPSHOT_21W17A(0x40000019, 2712, true, v1_17, "21w17a"),
+    SNAPSHOT_21W16A(0x40000017, 2711, true, v1_17, "21w16a"),
+    SNAPSHOT_21W15A(0x40000016, 2709, true, v1_17, "21w15a"),
+    SNAPSHOT_21W14A(0x40000015, 2706, true, v1_17, "21w14a"),
+    SNAPSHOT_21W13A(0x40000014, 2705, true, v1_17, "21w13a"),
+    SNAPSHOT_21W11A(0x40000013, 2703, true, v1_17, "21w11a"),
+    SNAPSHOT_21W10A(0x40000012, 2699, true, v1_17, "21w10a"),
+    SNAPSHOT_21W08B(0x40000011, 2698, true, v1_17, "21w08b"),
+    SNAPSHOT_21W08A(0x40000010, 2697, true, v1_17, "21w08a"),
+    SNAPSHOT_21W07A(0x4000000F, 2695, true, v1_17, "21w07a"),
+    SNAPSHOT_21W06A(0x4000000E, 2694, true, v1_17, "21w06a"),
+    SNAPSHOT_21W05B(0x4000000D, 2692, true, v1_17, "21w05b"),
+    SNAPSHOT_21W05A(0x4000000C, 2690, true, v1_17, "21w05a"),
+    SNAPSHOT_21W03A(0x4000000B, 2689, true, v1_17, "21w03a"),
     SNAPSHOT_20W51A(0x40000009, 2687, true, v1_17, "20w51a"),
     SNAPSHOT_20W49A(0x40000008, 2685, true, v1_17, "20w49a"),
     SNAPSHOT_20W48A(0x40000007, 2683, true, v1_17, "20w48a"),
     SNAPSHOT_20W46A(0x40000006, 2682, true, v1_17, "20w46a"),
     SNAPSHOT_20W45A(0x40000005, 2681, true, v1_17, "20w45a"),
+
+    v1_16_5    (754, 2586, true, "1.16.5"),
+    v1_16_5_RC1(0x4000000A, 2585, true, v1_16_5, "1.16.5-rc1"),
 
     v1_16_4     (754,        2584, true, "1.16.4"),
     v1_16_4_RC1 (0x40000003, 2583, true, "1.16.4-rc1"),
