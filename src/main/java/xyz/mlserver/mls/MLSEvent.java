@@ -11,9 +11,9 @@ public enum MLSEvent {
         }
     };
 
-    private String name;
-    private String database;
-    private String display;
+    private final String name;
+    private final String database;
+    private final String display;
 
     private MLSEvent(String name, String database, String display) {
         this.name = name;
