@@ -2,21 +2,23 @@ package xyz.mlserver.mc.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Mojang {
-    public static UUID getUUID(String playername) {
+    public static UUID getUUID(String playerName) {
 
         // URLを叩くとラグが発生するため
-        for (Player p : Bukkit.getOnlinePlayers()) if (p.getName().equalsIgnoreCase(playername)) return p.getUniqueId();
+        for (Player p : Bukkit.getOnlinePlayers()) if (p.getName().equalsIgnoreCase(playerName)) return p.getUniqueId();
 
-        String output = callURL("https://api.mojang.com/users/profiles/minecraft/" + playername);
+        String output = callURL("https://api.mojang.com/users/profiles/minecraft/" + playerName);
 
         StringBuilder result = new StringBuilder();
 
@@ -56,7 +58,7 @@ public class Mojang {
 
     private static String callURL(String URL) {
         StringBuilder sb = new StringBuilder();
-        URLConnection urlConn = null;
+        URLConnection urlConn;
         InputStreamReader in = null;
         try {
             java.net.URL url = new URL(URL);
@@ -79,7 +81,7 @@ public class Mojang {
                 }
             }
 
-            in.close();
+            Objects.requireNonNull(in).close();
         } catch (Exception e) {
             e.printStackTrace();
         }
