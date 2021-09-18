@@ -1,4 +1,4 @@
-package xyz.mlserver.bungee;
+package xyz.mlserver.bungee.util;
 
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;

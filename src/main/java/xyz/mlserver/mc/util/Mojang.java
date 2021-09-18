@@ -1,4 +1,4 @@
-package xyz.mlserver.mcutil;
+package xyz.mlserver.mc.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

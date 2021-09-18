@@ -1,4 +1,4 @@
-package xyz.mlserver.mcutil;
+package xyz.mlserver.mc.util;
 
 import java.io.File;
 import java.io.IOException;

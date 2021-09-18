@@ -1,8 +1,8 @@
-package xyz.mlserver.mcutil;
+package xyz.mlserver.mc.util;
 
 import com.viaversion.viaversion.api.Via;
 import org.bukkit.entity.Player;
-import xyz.mlserver.mcutil.version.MCVersion;
+import xyz.mlserver.mc.util.version.MCVersion;
 import xyz.mlserver.util.ICollectionList;
 
 import java.util.Objects;

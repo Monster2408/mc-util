@@ -9,8 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import xyz.mlserver.mcutil.OriginalItemStack;
-import xyz.mlserver.mcutil.skull.SkullVar;
+import xyz.mlserver.mc.util.OriginalItemStack;
+import xyz.mlserver.mc.util.skull.SkullVar;
 
 import java.util.HashMap;
 import java.util.UUID;

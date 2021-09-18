@@ -1,4 +1,4 @@
-package xyz.mlserver.mcutil;
+package xyz.mlserver.mc.util;
 
 import org.bukkit.ChatColor;
 

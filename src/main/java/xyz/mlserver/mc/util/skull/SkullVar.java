@@ -1,4 +1,4 @@
-package xyz.mlserver.mcutil.skull;
+package xyz.mlserver.mc.util.skull;
 
 public class SkullVar {
 

@@ -1,8 +1,8 @@
-package xyz.mlserver.mcutil.listener;
+package xyz.mlserver.mc.listener;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import xyz.mlserver.mcutil.Color;
+import xyz.mlserver.mc.util.Color;
 
 import java.util.UUID;
 
