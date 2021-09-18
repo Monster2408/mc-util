@@ -1,4 +1,4 @@
-package xyz.mlserver.mcutil.version;
+package xyz.mlserver.mc.util.version;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
