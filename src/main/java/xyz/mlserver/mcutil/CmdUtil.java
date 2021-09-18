@@ -1,13 +1,12 @@
 package xyz.mlserver.mcutil;
 
 import org.bukkit.ChatColor;
-import xyz.mlserver.lang.LanguageUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CommandUtil {
+public class CmdUtil {
 
     private final HashMap<String, String> commandUtilHash;
     private String format;
@@ -16,25 +15,25 @@ public class CommandUtil {
     private final String temp_heder = ChatColor.YELLOW + "-------- " + ChatColor.WHITE + "HELP: page" + "%NOW-PAGE%/%MAX-PAGE%" + ChatColor.YELLOW + " --------";
     private final String temp_format = ChatColor.GOLD + "%CMD%: " + ChatColor.WHITE + "%DESCRIPTION%";
 
-    public CommandUtil(String format, String header) {
+    public CmdUtil(String format, String header) {
         this.commandUtilHash = new HashMap<>();
         this.format = format;
         this.header = header;
     }
 
-    public CommandUtil(String format) {
+    public CmdUtil(String format) {
         this.commandUtilHash = new HashMap<>();
         this.format = format;
         this.header = temp_heder;
     }
 
-    public CommandUtil() {
+    public CmdUtil() {
         this.commandUtilHash = new HashMap<>();
         this.format = temp_format;
         this.header = temp_heder;
     }
 
-    public CommandUtil add(String cmd, String description) {
+    public CmdUtil add(String cmd, String description) {
         this.commandUtilHash.put(cmd, description);
         return this;
     }
