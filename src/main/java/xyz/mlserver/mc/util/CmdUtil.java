@@ -1,5 +1,7 @@
 package xyz.mlserver.mc.util;
 
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
@@ -58,7 +60,7 @@ public class CmdUtil {
         return commandUtilHash;
     }
 
-    public List<String> getHelpMsg() {
+    public List<String> getHelpMsg(int page) {
         List<String> list = new ArrayList<>();
         String text;
         HashMap<String, String> hash = this.getCommandUtilHash();
@@ -69,7 +71,6 @@ public class CmdUtil {
             list.add(text);
         }
         int max;
-        int i = 8;
         int COMMAND_LINES = 7;
         List<String> _list = new ArrayList<>();
         if ((list.size() % COMMAND_LINES) > 0) {
@@ -78,14 +79,58 @@ public class CmdUtil {
             max = (list.size() / COMMAND_LINES);
         }
         int ListI;
-        if (max < i) {
+        if (max < page) {
             ListI = 0;
-            i = 1;
+            page = 1;
         } else {
-            ListI = i - 1;
+            ListI = page - 1;
         }
         ListI = ListI * COMMAND_LINES;
-        _list.add(header);
+        text = header;
+        text = text.replace("%NOW-PAGE%", String.valueOf(page));
+        text = text.replace("%MAX-PAGE%", String.valueOf(max));
+        _list.add(text);
+        for (int n = 0; n < COMMAND_LINES; n++) {
+            if (ListI >= list.size()) return _list;
+            _list.add(list.get(ListI));
+            ListI++;
+        }
+        return _list;
+    }
+
+    public List<TextComponent> getAdvanceHelpMsg(int page) {
+        List<TextComponent> list = new ArrayList<>();
+        TextComponent component;
+        String text;
+        HashMap<String, String> hash = this.getCommandUtilHash();
+        for (String cmd : hash.keySet()) {
+            text = format;
+            text = text.replace("%CMD%", cmd);
+            text = text.replace("%DESCRIPTION%", hash.get(cmd));
+            component = new TextComponent(text);
+            component.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, cmd));
+            list.add(component);
+        }
+        int max;
+        int COMMAND_LINES = 7;
+        List<TextComponent> _list = new ArrayList<>();
+        if ((list.size() % COMMAND_LINES) > 0) {
+            max = (list.size() / COMMAND_LINES) + 1;
+        } else {
+            max = (list.size() / COMMAND_LINES);
+        }
+        int ListI;
+        if (max < page) {
+            ListI = 0;
+            page = 1;
+        } else {
+            ListI = page - 1;
+        }
+        ListI = ListI * COMMAND_LINES;
+        text = header;
+        text = text.replace("%NOW-PAGE%", String.valueOf(page));
+        text = text.replace("%MAX-PAGE%", String.valueOf(max));
+        _list.add(new TextComponent(text));
         for (int n = 0; n < COMMAND_LINES; n++) {
             if (ListI >= list.size()) return _list;
             _list.add(list.get(ListI));
