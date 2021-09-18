@@ -2,7 +2,7 @@ package xyz.mlserver.mc.util.version;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import xyz.mlserver.mcutil.version.test.IgnoreTest;
+import xyz.mlserver.mc.util.version.test.IgnoreTest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
