@@ -10,11 +10,11 @@ import java.sql.SQLException;
 public class MySQLUtil {
 
     public static Connection connection;
-    private final String host;
-    private final int port;
-    private final String database;
-    private final String username;
-    private final String password;
+    private static String host;
+    private static int port;
+    private static String database;
+    private static String username;
+    private static String password;
 
     public MySQLUtil(String host, int port, String database, String username, String password) {
         this.host = host;
@@ -52,8 +52,7 @@ public class MySQLUtil {
         }
     }
 
-    public void openStaticConnection() {
-        int port = mySQLUtil.getPort();
+    public static void openStaticConnection() {
         try {
             if (connection != null && !connection.isClosed()) {
                 return;

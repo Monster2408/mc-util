@@ -1,8 +1,10 @@
 package xyz.mlserver.mc.util;
 
+import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,6 +60,31 @@ public class CmdUtil {
 
     public HashMap<String, String> getCommandUtilHash() {
         return commandUtilHash;
+    }
+
+    /**
+     * send help of base
+     * @param player
+     * @param page
+     * @param advanced
+     */
+    public void send(Player player, int page, boolean advanced) {
+        if (advanced) for (TextComponent textComponent : getAdvanceHelpMsg(page)) player.spigot().sendMessage(textComponent);
+        else for (String text : getHelpMsg(page)) player.sendMessage(text);
+    }
+
+    public void send(CommandSender sender, int page) {
+        if (sender instanceof Player) send(((Player)sender), page, false);
+        else for (String text : getHelpMsg(page)) sender.sendMessage(new TextComponent(text));
+    }
+
+    public void send(Player player, int page) {
+        send(player, page, false);
+    }
+
+    public void send(CommandSender sender, int page, boolean advanced) {
+        if (sender instanceof Player) send(((Player)sender), page, advanced);
+        else send(sender, page);
     }
 
     public List<String> getHelpMsg(int page) {
