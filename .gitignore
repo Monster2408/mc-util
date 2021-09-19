@@ -2,6 +2,6 @@ target/
 .idea/
 test/
 
-!/version/test/
+!mc/util/version/test/
 
 tool/VersionOpenTool.xlsx
