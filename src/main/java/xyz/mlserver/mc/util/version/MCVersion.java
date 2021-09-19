@@ -13,7 +13,7 @@ import java.util.Map;
 public enum MCVersion {
 
     /*
-        参考
+        参考サイト
         https://minecraft.fandom.com/wiki/Protocol_version#Java_Edition
     */
 
