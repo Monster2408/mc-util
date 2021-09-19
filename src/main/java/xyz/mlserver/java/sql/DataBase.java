@@ -43,6 +43,12 @@ public class DataBase {
         }
     }
 
+    public void close() {
+        if (this.dataSource != null) {
+            this.dataSource.close();
+        }
+    }
+
     public MySQL getMySQL() {
         return mysql;
     }
