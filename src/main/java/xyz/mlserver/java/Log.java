@@ -1,8 +1,17 @@
 package xyz.mlserver.java;
 
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import xyz.mlserver.util.Validate;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Log {
     @NotNull
@@ -16,6 +25,18 @@ public class Log {
     public static void finer(String name, String msg) { Bukkit.getLogger().finer("[" + name + "] " + msg); }
     public static void finest(String name, String msg) { Bukkit.getLogger().finest("[" + name + "] " + msg); }
     public static void debug(String name, String msg) { Bukkit.getLogger().info("[" + name + "] [DEBUG] " + msg); }
+    public static void toFile(String name, String msg, Plugin plugin) {
+        try {
+            File logFile = new File(plugin.getDataFolder(), "debug.log");
+            if (!logFile.exists()) logFile.createNewFile();
+
+            FileWriter fileWriter = new FileWriter(logFile, true);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.println("[" + name + "] " + getDateTime() + " " + msg);
+            printWriter.flush();
+            printWriter.close();
+        } catch (IOException e) { e.printStackTrace(); }
+    }
 
     public static void info(String msg) {
         try {
@@ -115,6 +136,21 @@ public class Log {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void toFile(String msg, Plugin plugin) {
+        try {
+            String name = Class.forName(Thread.currentThread().getStackTrace()[2].getClassName()).getSimpleName();
+            if (name.equalsIgnoreCase("")) name = "Anonymous";
+            toFile(name, msg, plugin);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String getDateTime() {
+        Format formatter = new SimpleDateFormat("[dd/MM/yyyy | HH:mm:ss]");
+        return formatter.format(new Date());
     }
 
     @NotNull
