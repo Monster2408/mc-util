@@ -14,7 +14,6 @@
     </repositories>
     
     <dependencies>
-        <!-- 新バージョン -->
         <dependency>
             <groupId>xyz.mlserver</groupId>
             <artifactId>repo.mlserver.xyz</artifactId>

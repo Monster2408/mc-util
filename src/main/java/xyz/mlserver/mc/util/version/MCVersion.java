@@ -20,8 +20,10 @@ public enum MCVersion {
     @IgnoreTest("marker version (not released yet)")
 
     v1_18                        (1,          1,    true,       "1.18"), // not released; set to release in late 2021. Caves & Cliffs: Part II
-    v1_18_EXPERIMENTAL_SNAPSHOT_7(0x4000002F, 2831, true, v1_18,"1.18_experimental-snapshot-5"),
-    v1_18_EXPERIMENTAL_SNAPSHOT_6(0x4000002E, 2830, true, v1_18,"1.18_experimental-snapshot-4"),
+
+    SNAPSHOT_21W37A              (0x40000029, 2834, true, v1_18,"21w37a"),
+    v1_18_EXPERIMENTAL_SNAPSHOT_7(0x4000002F, 2831, true, v1_18,"1.18_experimental-snapshot-7"),
+    v1_18_EXPERIMENTAL_SNAPSHOT_6(0x4000002E, 2830, true, v1_18,"1.18_experimental-snapshot-6"),
     v1_18_EXPERIMENTAL_SNAPSHOT_5(0x4000002D, 2829, true, v1_18,"1.18_experimental-snapshot-5"),
     v1_18_EXPERIMENTAL_SNAPSHOT_4(0x4000002C, 2828, true, v1_18,"1.18_experimental-snapshot-4"),
     v1_18_EXPERIMENTAL_SNAPSHOT_3(0x4000002B, 2827, true, v1_18,"1.18_experimental-snapshot-3"),

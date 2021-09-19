@@ -1,4 +1,4 @@
-package xyz.mlserver.mc.listener;
+package xyz.mlserver.mls.listener;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;

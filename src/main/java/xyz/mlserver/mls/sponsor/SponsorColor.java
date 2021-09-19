@@ -1,13 +1,12 @@
 package xyz.mlserver.mls.sponsor;
 
 import org.bukkit.Bukkit;
-import org.bukkit.event.Listener;
 import xyz.mlserver.mc.util.Color;
-import xyz.mlserver.mc.listener.ChangeSponsorColor;
+import xyz.mlserver.mls.listener.ChangeSponsorColor;
 
 import java.util.UUID;
 
-public class SponsorColor implements Listener {
+public class SponsorColor {
 
     private final UUID uuid;
     private Color color;

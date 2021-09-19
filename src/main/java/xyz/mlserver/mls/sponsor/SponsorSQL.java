@@ -22,8 +22,8 @@ public class SponsorSQL {
 
     public static MySQLUtil mySQLUtil;
 
-    public static String host, database, username, password;
-    public static int port = -1;
+    private static String host, database, username, password;
+    private static int port;
 
     /**
      * HighFunctionalityLib必須
@@ -33,11 +33,11 @@ public class SponsorSQL {
         Plugin highFLib = Bukkit.getPluginManager().getPlugin("HighFunctionalityLib");
         if (highFLib == null) return -1;
         if (mySQLUtil == null) {
-            if (host == null) highFLib.getConfig().getString("host", "localhost");
-            if (port < 0) highFLib.getConfig().getInt("host", 3306);
-            if (database == null) highFLib.getConfig().getString("database", "database");
-            if (username == null) highFLib.getConfig().getString("username", "username");
-            if (password == null) highFLib.getConfig().getString("password", "password");
+            if (host == null) host = highFLib.getConfig().getString("host", "localhost");
+            if (port < 0) port = highFLib.getConfig().getInt("host", 3306);
+            if (database == null) database = highFLib.getConfig().getString("database", "database");
+            if (username == null) username = highFLib.getConfig().getString("username", "username");
+            if (password == null) password = highFLib.getConfig().getString("password", "password");
 
             mySQLUtil = new MySQLUtil(
                     host,
@@ -56,6 +56,12 @@ public class SponsorSQL {
         }
     }
 
+    /**
+     *
+     * @param uuid UUID of Player
+     * @param i    Add sponsor month
+     *
+     */
     public static void savePlayer(UUID uuid, int i) {
         int error = OpenConnection();
         if (error == -1) {
@@ -142,6 +148,12 @@ public class SponsorSQL {
         }
     }
 
+    /**
+     *
+     * @param uuid (String) UUID of Player
+     * @param i    Add sponsor month
+     *
+     */
     public static void savePlayer(String uuid, int i) {
         try {
             OpenConnection();
@@ -221,6 +233,11 @@ public class SponsorSQL {
         }
     }
 
+    /**
+     *
+     * @param  uuid - UUID of Player
+     * @return Date - Number of days remaining in the sponsorship period
+     */
     public static Date getSponsorTime(UUID uuid) {
         int error = OpenConnection();
         if (error == -1) {
@@ -250,6 +267,11 @@ public class SponsorSQL {
         return null;
     }
 
+    /**
+     * Player is Sponsor
+     * @param uuid - UUID of Player
+     * @return
+     */
     public static boolean isSponsor(UUID uuid) {
         Date date = getSponsorTime(uuid);
         Date today = new Date();

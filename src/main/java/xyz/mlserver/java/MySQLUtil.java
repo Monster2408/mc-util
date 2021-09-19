@@ -1,5 +1,8 @@
 package xyz.mlserver.java;
 
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,11 +10,11 @@ import java.sql.SQLException;
 public class MySQLUtil {
 
     public static Connection connection;
-    private static String host;
-    private static int port;
-    private static String database;
-    private static String username;
-    private static String password;
+    private final String host;
+    private final int port;
+    private final String database;
+    private final String username;
+    private final String password;
 
     public MySQLUtil(String host, int port, String database, String username, String password) {
         this.host = host;
@@ -25,15 +28,15 @@ public class MySQLUtil {
 
     public static void setConnection(Connection connection) { MySQLUtil.connection = connection; }
 
-    public static String getUser() { return username; }
+    public String getUser() { return username; }
 
-    public static String getHost() { return host; }
+    public String getHost() { return host; }
 
-    public static int getPort() { return port; }
+    public int getPort() { return port; }
 
-    public static String getDatabase() { return database; }
+    public String getDatabase() { return database; }
 
-    public static String getPassword() { return password; }
+    public String getPassword() { return password; }
 
     public void openConnection() throws SQLException, ClassNotFoundException {
         if (connection != null && !connection.isClosed()) {
@@ -49,7 +52,8 @@ public class MySQLUtil {
         }
     }
 
-    public static void openStaticConnection() {
+    public void openStaticConnection() {
+        int port = mySQLUtil.getPort();
         try {
             if (connection != null && !connection.isClosed()) {
                 return;
@@ -64,6 +68,39 @@ public class MySQLUtil {
             }
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
+        }
+    }
+
+    public static MySQLUtil mySQLUtil;
+
+    /**
+     * HighFunctionalityLib必須
+     * @return {1: "成功", 0: "HighFunctionalityLibがねえ...", -1: "失敗"}
+     */
+    public int OpenConnection() {
+        Plugin highFLib = Bukkit.getPluginManager().getPlugin("HighFunctionalityLib");
+        if (highFLib == null) return -1;
+        if (mySQLUtil == null) {
+            if (host == null) highFLib.getConfig().getString("host", "localhost");
+            if (port < 0) highFLib.getConfig().getInt("host", 3306);
+            if (database == null) highFLib.getConfig().getString("database", "database");
+            if (username == null) highFLib.getConfig().getString("username", "username");
+            if (password == null) highFLib.getConfig().getString("password", "password");
+
+            mySQLUtil = new MySQLUtil(
+                    host,
+                    port,
+                    database,
+                    username,
+                    password
+            );
+        }
+        try {
+            mySQLUtil.openConnection();
+            return 1;
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 
