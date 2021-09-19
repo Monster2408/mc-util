@@ -58,7 +58,7 @@ public class SponsorSQL {
     /**
      *
      * @param uuid UUID of Player
-     * @param i    Add sponsor month
+     * @param i    Add new_sponsor month
      *
      */
     public static void savePlayer(UUID uuid, int i) {
@@ -69,7 +69,7 @@ public class SponsorSQL {
             Log.error("MySQLエラー");
         } else {
             try {
-                String sql = "SELECT * FROM sponsor;";
+                String sql = "SELECT * FROM new_sponsor;";
                 PreparedStatement statement = MySQLUtil.getConnection().prepareStatement(sql);
                 ResultSet result = statement.executeQuery();
                 String uuidStr;
@@ -77,7 +77,7 @@ public class SponsorSQL {
                 while (result.next()) {
                     uuidStr = result.getString(1);
                     if (uuidStr.equalsIgnoreCase(uuid.toString())) {
-                        sql = "UPDATE sponsor SET date=? WHERE uuid=?;";
+                        sql = "UPDATE new_sponsor SET date=? WHERE uuid=?;";
                         statement = MySQLUtil.getConnection().prepareStatement(sql);
 
                         if (i <= 0) statement.setString(1, "null");
@@ -121,7 +121,7 @@ public class SponsorSQL {
                     }
                 }
 
-                sql = "INSERT INTO sponsor (uuid, date) VALUES (?, ?);";
+                sql = "INSERT INTO new_sponsor (uuid, date) VALUES (?, ?);";
                 PreparedStatement preparedStatement = MySQLUtil.getConnection().prepareStatement(sql);
 
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -150,13 +150,13 @@ public class SponsorSQL {
     /**
      *
      * @param uuid (String) UUID of Player
-     * @param i    Add sponsor month
+     * @param i    Add new_sponsor month
      *
      */
     public static void savePlayer(String uuid, int i) {
         try {
             OpenConnection();
-            String sql = "SELECT * FROM sponsor;";
+            String sql = "SELECT * FROM new_sponsor;";
             PreparedStatement statement = MySQLUtil.getConnection().prepareStatement(sql);
             ResultSet result = statement.executeQuery();
             String uuidStr;
@@ -164,7 +164,7 @@ public class SponsorSQL {
             while (result.next()) {
                 uuidStr = result.getString(1);
                 if (uuidStr.equalsIgnoreCase(uuid)) {
-                    sql = "UPDATE sponsor SET date=? WHERE uuid=?;";
+                    sql = "UPDATE new_sponsor SET date=? WHERE uuid=?;";
                     statement = MySQLUtil.getConnection().prepareStatement(sql);
 
                     if (i <= 0) statement.setString(1, "null");
@@ -208,7 +208,7 @@ public class SponsorSQL {
                 }
             }
 
-            sql = "INSERT INTO sponsor (uuid, date) VALUES (?, ?);";
+            sql = "INSERT INTO new_sponsor (uuid, date) VALUES (?, ?);";
             PreparedStatement preparedStatement = MySQLUtil.getConnection().prepareStatement(sql);
 
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -235,7 +235,7 @@ public class SponsorSQL {
     /**
      *
      * @param  uuid - UUID of Player
-     * @return Date - Number of days remaining in the sponsorship period
+     * @return Date - Number of days remaining in the new_sponsorship period
      */
     public static Date getSponsorTime(UUID uuid) {
         int error = OpenConnection();
@@ -245,7 +245,7 @@ public class SponsorSQL {
             Log.error("MySQLエラー");
         } else {
             try {
-                String sql = "SELECT * FROM sponsor;";
+                String sql = "SELECT * FROM new_sponsor;";
                 PreparedStatement statement = MySQLUtil.getConnection().prepareStatement(sql);
                 ResultSet result = statement.executeQuery();
                 String uuidStr;
@@ -267,7 +267,7 @@ public class SponsorSQL {
     }
 
     /**
-     * Player is Sponsor
+     * Player is new_sponsor
      * @param uuid - UUID of Player
      * @return
      */
