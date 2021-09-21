@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * @deprecated
+ */
 public class MySQLUtil {
 
     public static Connection connection;

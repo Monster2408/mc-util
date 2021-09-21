@@ -15,6 +15,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class SponsorSQL {
@@ -57,100 +59,8 @@ public class SponsorSQL {
 
     /**
      *
-     * @param uuid UUID of Player
-     * @param i    Add new_sponsor month
-     *
-     */
-    public static void savePlayer(UUID uuid, int i) {
-        int error = OpenConnection();
-        if (error == -1) {
-            Log.error("HighFunctionalityLibがねえ...");
-        } else if (error == 0) {
-            Log.error("MySQLエラー");
-        } else {
-            try {
-                String sql = "SELECT * FROM new_sponsor;";
-                PreparedStatement statement = MySQLUtil.getConnection().prepareStatement(sql);
-                ResultSet result = statement.executeQuery();
-                String uuidStr;
-
-                while (result.next()) {
-                    uuidStr = result.getString(1);
-                    if (uuidStr.equalsIgnoreCase(uuid.toString())) {
-                        sql = "UPDATE new_sponsor SET date=? WHERE uuid=?;";
-                        statement = MySQLUtil.getConnection().prepareStatement(sql);
-
-                        if (i <= 0) statement.setString(1, "null");
-                        else {
-                            if (result.getString(2) == null || result.getString(2).equalsIgnoreCase("null")) {
-                                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-                                Date date = new Date();
-
-                                Calendar calendar = Calendar.getInstance();
-                                calendar.setTime(date);
-
-                                calendar.add(Calendar.MONTH, i);
-
-                                statement.setString(1, df.format(calendar.getTime()));
-
-                                if (Bukkit.getPlayer(uuid) != null) Bukkit.getPlayer(uuid).sendMessage(ChatColor.AQUA + "あなたは本日から" + df.format(calendar.getTime()) + "までスポンサーです。");
-                            } else {
-                                try {
-                                    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-                                    df.setLenient(false);
-                                    String s1 = result.getString(2);
-
-                                    Calendar calendar = Calendar.getInstance();
-                                    calendar.setTime(df.parse(s1));
-
-                                    calendar.add(Calendar.MONTH, i);
-
-                                    statement.setString(1, df.format(calendar.getTime()));
-
-                                    if (Bukkit.getPlayer(uuid) != null) Bukkit.getPlayer(uuid).sendMessage(ChatColor.AQUA + "あなたは本日から" + df.format(calendar.getTime()) + "までスポンサーです。");
-
-                                } catch (ParseException p) {
-                                    p.printStackTrace();
-                                    return;
-                                }
-                            }
-                        }
-                        statement.setString(2, uuid.toString());
-                        statement.executeUpdate();
-                        return;
-                    }
-                }
-
-                sql = "INSERT INTO new_sponsor (uuid, date) VALUES (?, ?);";
-                PreparedStatement preparedStatement = MySQLUtil.getConnection().prepareStatement(sql);
-
-                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-                Date date = new Date();
-
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(date);
-
-                calendar.add(Calendar.MONTH, i);
-                System.out.println(df.format(calendar.getTime()));
-
-                preparedStatement.setString(1, uuid.toString());
-                preparedStatement.setString(2, df.format(calendar.getTime()));
-
-                if (Bukkit.getPlayer(uuid) != null) Bukkit.getPlayer(uuid).sendMessage(ChatColor.AQUA + "あなたは本日から" + df.format(calendar.getTime()) + "までスポンサーです。");
-
-
-                preparedStatement.executeUpdate();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     *
      * @param uuid (String) UUID of Player
-     * @param i    Add new_sponsor month
+     * @param i    Add sponsor month
      *
      */
     public static void savePlayer(String uuid, int i) {
@@ -220,7 +130,7 @@ public class SponsorSQL {
             calendar.add(Calendar.MONTH, i);
             System.out.println(df.format(calendar.getTime()));
 
-            preparedStatement.setString(1, uuid.toString());
+            preparedStatement.setString(1, uuid);
             preparedStatement.setString(2, df.format(calendar.getTime()));
 
             if (Bukkit.getPlayer(UUID.fromString(uuid)) != null) Bukkit.getPlayer(UUID.fromString(uuid)).sendMessage(ChatColor.AQUA + "あなたは本日から" + df.format(calendar.getTime()) + "までスポンサーです。");
@@ -234,10 +144,46 @@ public class SponsorSQL {
 
     /**
      *
-     * @param  uuid - UUID of Player
-     * @return Date - Number of days remaining in the new_sponsorship period
+     * @param uuid UUID of Player
+     * @param i    Add sponsor month
+     *
      */
-    public static Date getSponsorTime(UUID uuid) {
+    public static void savePlayer(UUID uuid, int i) {
+        savePlayer(uuid.toString(), i);
+    }
+
+    /**
+     * 毎回データベースをなめるのはなんかいやだからの変数
+     */
+    private static HashMap<String, Date> sponsorTime;
+    /**
+     * sponsorTimeを最後にアップデートした日時
+     */
+    private static HashMap<String, Date> sponsorTimeLastUpdate;
+
+    /**
+     *
+     * @param  uuid - (String)UUID of Player
+     * @return Date - Number of days remaining in the sponsorship period
+     */
+    public static Date getSponsorTime(String uuid) {
+        if (sponsorTime == null) sponsorTime = new HashMap<>();
+        if (sponsorTimeLastUpdate == null) sponsorTimeLastUpdate = new HashMap<>();
+
+        if (sponsorTimeLastUpdate.get(uuid) != null && sponsorTime.get(uuid) != null) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date()); // 現在時刻取得
+
+            calendar.add(Calendar.MINUTE, -5); // 現在から5分前
+
+            Calendar calendar1 = Calendar.getInstance();
+            calendar1.setTime(sponsorTimeLastUpdate.get(uuid));
+
+            if(calendar1.after(calendar)){ // 前回のロードが現在から5分前よりも未来なら
+                return sponsorTime.get(uuid);
+            }
+        }
+
         int error = OpenConnection();
         if (error == -1) {
             Log.error("HighFunctionalityLibがねえ...");
@@ -252,11 +198,14 @@ public class SponsorSQL {
 
                 while (result.next()) {
                     uuidStr = result.getString(1);
-                    if (uuidStr.equalsIgnoreCase(uuid.toString())) {
+                    if (uuidStr.equalsIgnoreCase(uuid)) {
                         String strDate = result.getString(2);
                         if (strDate.equalsIgnoreCase("null")) return null;
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                        return dateFormat.parse(strDate);
+                        Date sponsorDate = dateFormat.parse(strDate);
+                        sponsorTime.put(uuid, sponsorDate);
+                        sponsorTimeLastUpdate.put(uuid, new Date());
+                        return sponsorDate;
                     }
                 }
             } catch (SQLException | ParseException e) {
@@ -267,7 +216,16 @@ public class SponsorSQL {
     }
 
     /**
-     * Player is new_sponsor
+     *
+     * @param  uuid - UUID of Player
+     * @return Date - Number of days remaining in the sponsorship period
+     */
+    public static Date getSponsorTime(UUID uuid) {
+        return getSponsorTime(uuid.toString());
+    }
+
+    /**
+     * Player is sponsor
      * @param uuid - UUID of Player
      * @return
      */
