@@ -127,15 +127,25 @@ public class SponsorSQL {
             e.printStackTrace();
         }
     }
-
+    
     public static void savePlayer(Plugin plugin, UUID uuid, int i) {
         savePlayer(plugin, uuid.toString(), i);
     }
 
+    /**
+     * @deprecated
+     * @param uuid
+     * @param i
+     */
     public static void savePlayer(String uuid, int i) {
         savePlayer(dataBase, uuid, i);
     }
 
+    /**
+     * @deprecated
+     * @param uuid
+     * @param i
+     */
     public static void savePlayer(UUID uuid, int i) {
         savePlayer(dataBase, uuid.toString(), i);
     }

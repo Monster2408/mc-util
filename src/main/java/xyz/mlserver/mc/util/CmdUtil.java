@@ -1,9 +1,9 @@
 package xyz.mlserver.mc.util;
 
-import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -75,7 +75,7 @@ public class CmdUtil {
 
     public void send(CommandSender sender, int page) {
         if (sender instanceof Player) send(((Player)sender), page, false);
-        else for (String text : getHelpMsg(page)) sender.sendMessage(new TextComponent(text));
+        else for (String text : getHelpMsg(page)) sender.spigot().sendMessage(new TextComponent(text));
     }
 
     public void send(Player player, int page) {
