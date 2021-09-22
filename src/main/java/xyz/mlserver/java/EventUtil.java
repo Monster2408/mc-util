@@ -179,7 +179,10 @@ public class EventUtil {
         if (gameData == null) gameData = new HashMap();
 
         Plugin highFLib = Bukkit.getPluginManager().getPlugin("HighFunctionalityLib");
-
+        if (highFLib == null) {
+            Log.error("はいふぁんくしょなりてぃりぶぅがないよ～");
+            return;
+        }
         if (dataBase == null) {
             dataBase = new DataBase(plugin, new MySQL(
                     MySQL.getDataBaseFromHFL(highFLib),

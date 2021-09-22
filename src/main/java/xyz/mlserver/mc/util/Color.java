@@ -1,16 +1,8 @@
 package xyz.mlserver.mc.util;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
-import xyz.mlserver.mls.sponsor.SponsorSQL;
-
-import java.util.HashMap;
 
 public class Color {
-
-    public static HashMap<String, String> playerDisplayColor;
 
     public static String replaceColorCode(String source) {
         if (source == null)
@@ -61,13 +53,6 @@ public class Color {
             default:
                 return null;
         }
-    }
-
-    public static String getColor(Player player) {
-        if (playerDisplayColor == null) playerDisplayColor = new HashMap<>();
-        playerDisplayColor.putIfAbsent(player.getUniqueId().toString(), ChatColor.LIGHT_PURPLE.toString());
-        if (!SponsorSQL.isSponsor(player.getUniqueId()) && !player.isOp()) playerDisplayColor.put(player.getUniqueId().toString(), ChatColor.LIGHT_PURPLE.toString());
-        return playerDisplayColor.get(player.getUniqueId().toString());
     }
 
 }
