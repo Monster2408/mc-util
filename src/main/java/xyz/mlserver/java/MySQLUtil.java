@@ -8,7 +8,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * @deprecated
+ *
+ * @deprecated {@link @DataBase}
  */
 public class MySQLUtil {
 
