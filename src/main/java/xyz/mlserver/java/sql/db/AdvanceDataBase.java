@@ -15,7 +15,6 @@ public class AdvanceDataBase {
     public AdvanceDataBase(MySQL mysql, SQLite sqLite) throws ClassNotFoundException {
         if (mysql == null) {
             String path = sqLite.getPath();
-
             final File dataFolder = new File(path);
             if (!dataFolder.exists()) dataFolder.mkdirs();
 
