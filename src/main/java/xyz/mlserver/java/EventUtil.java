@@ -315,6 +315,15 @@ public class EventUtil {
         }
     }
 
+    /**
+     * HighFunctionalityLib 必須
+     * @param event
+     * @param plugin
+     */
+    public static void load(MLSEvent event, Plugin plugin) {
+        load(event.getDatabase(), plugin);
+    }
+
     public static HashMap<String, Integer> getWinData() {
         return winData;
     }
