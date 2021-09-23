@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import xyz.mlserver.java.sql.DataBase;
 import xyz.mlserver.java.sql.mysql.MySQL;
+import xyz.mlserver.mls.MLSEvent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,9 +46,59 @@ public class EventUtil {
         }
     }
 
-    public static void addWin(String uuid) { addWin(uuid, 1); }
+    public static void addWin(String table_name, String uuid, int i) {
+        if (dataBase == null) {
+            Log.error("load関数を実行してください。");
+            return;
+        }
 
+        gameData.putIfAbsent(uuid, 0);
+        winData.putIfAbsent(uuid, 0);
+        winData.put(uuid, winData.get(uuid) + i);
+
+        String sql = "insert into " + table_name + " (uuid, game, win) "
+                + "VALUES ('"+uuid+"', " + gameData.get(uuid) + ", " + winData.get(uuid) + ") "
+                +"ON DUPLICATE KEY UPDATE "
+                +"uuid='" + uuid + "', "
+                +"game=" + gameData.get(uuid) + ", "
+                +"win=" + winData.get(uuid) + ";";
+        try(Connection con = dataBase.getDataSource().getConnection();
+            PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addWin(DataBase dataBase, String table_name, String uuid, int i) {
+        gameData.putIfAbsent(uuid, 0);
+        winData.putIfAbsent(uuid, 0);
+        winData.put(uuid, winData.get(uuid) + i);
+
+        String sql = "insert into " + table_name + " (uuid, game, win) "
+                + "VALUES ('"+uuid+"', " + gameData.get(uuid) + ", " + winData.get(uuid) + ") "
+                +"ON DUPLICATE KEY UPDATE "
+                +"uuid='" + uuid + "', "
+                +"game=" + gameData.get(uuid) + ", "
+                +"win=" + winData.get(uuid) + ";";
+        try(Connection con = dataBase.getDataSource().getConnection();
+            PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addWin(String uuid) { addWin(uuid, 1); }
     public static void addWin(UUID uuid) { addWin(uuid.toString(), 1); }
+    public static void addWin(String table_name, String uuid) { addWin(table_name, uuid, 1); }
+    public static void addWin(String table_name, UUID uuid) { addWin(table_name, uuid.toString(), 1); }
+    public static void addWin(DataBase dataBase, String table_name, String uuid) { addWin(dataBase, table_name, uuid, 1); }
+    public static void addWin(DataBase dataBase, String table_name, UUID uuid) { addWin(dataBase, table_name, uuid.toString(), 1); }
+    public static void addWin(MLSEvent event, String uuid) { addWin(event.getDatabase(), uuid, 1); }
+    public static void addWin(MLSEvent event, UUID uuid) { addWin(event.getDatabase(), uuid.toString(), 1); }
+    public static void addWin(DataBase dataBase, MLSEvent event, String uuid) { addWin(dataBase, event.getDatabase(), uuid, 1); }
+    public static void addWin(DataBase dataBase, MLSEvent event, UUID uuid) { addWin(dataBase, event.getDatabase(), uuid.toString(), 1); }
 
     public static void addGame(String uuid, int i) {
         if (dataBase == null) {
@@ -73,9 +124,59 @@ public class EventUtil {
         }
     }
 
-    public static void addGame(String uuid) { addGame(uuid, 1); }
+    public static void addGame(String table_name, String uuid, int i) {
+        if (dataBase == null) {
+            Log.error("load関数を実行してください。");
+            return;
+        }
 
+        gameData.putIfAbsent(uuid, 0);
+        winData.putIfAbsent(uuid, 0);
+        gameData.put(uuid, gameData.get(uuid) + i);
+
+        String sql = "insert into " + table_name + " (uuid, game, win) "
+                + "VALUES ('"+uuid+"', " + gameData.get(uuid) + ", " + winData.get(uuid) + ") "
+                +"ON DUPLICATE KEY UPDATE "
+                +"uuid='" + uuid + "', "
+                +"game=" + gameData.get(uuid) + ", "
+                +"win=" + winData.get(uuid) + ";";
+        try(Connection con = dataBase.getDataSource().getConnection();
+            PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addGame(DataBase dataBase, String table_name, String uuid, int i) {
+        gameData.putIfAbsent(uuid, 0);
+        winData.putIfAbsent(uuid, 0);
+        gameData.put(uuid, gameData.get(uuid) + i);
+
+        String sql = "insert into " + table_name + " (uuid, game, win) "
+                + "VALUES ('"+uuid+"', " + gameData.get(uuid) + ", " + winData.get(uuid) + ") "
+                +"ON DUPLICATE KEY UPDATE "
+                +"uuid='" + uuid + "', "
+                +"game=" + gameData.get(uuid) + ", "
+                +"win=" + winData.get(uuid) + ";";
+        try(Connection con = dataBase.getDataSource().getConnection();
+            PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addGame(String uuid) { addGame(uuid, 1); }
     public static void addGame(UUID uuid) { addGame(uuid.toString(), 1); }
+    public static void addGame(String table_name, String uuid) { addGame(table_name, uuid, 1); }
+    public static void addGame(String table_name, UUID uuid) { addGame(table_name, uuid.toString(), 1); }
+    public static void addGame(DataBase dataBase, String table_name, String uuid) { addGame(dataBase, table_name, uuid, 1); }
+    public static void addGame(DataBase dataBase, String table_name, UUID uuid) { addGame(dataBase, table_name, uuid.toString(), 1); }
+    public static void addGame(MLSEvent event, String uuid) { addGame(event.getDatabase(), uuid, 1); }
+    public static void addGame(MLSEvent event, UUID uuid) { addGame(event.getDatabase(), uuid.toString(), 1); }
+    public static void addGame(DataBase dataBase, MLSEvent event, String uuid) { addGame(dataBase, event.getDatabase(), uuid, 1); }
+    public static void addGame(DataBase dataBase, MLSEvent event, UUID uuid) { addGame(dataBase, event.getDatabase(), uuid.toString(), 1); }
 
     /* 以下、addWinsとaddGames */
 
