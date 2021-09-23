@@ -1,5 +1,7 @@
 package xyz.mlserver.java;
 
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import xyz.mlserver.java.sql.DataBase;
@@ -10,9 +12,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 public class EventUtil {
@@ -22,6 +29,53 @@ public class EventUtil {
     private static HashMap<String, Integer> gameData;
     private static DataBase dataBase;
 
+    private static Table<MLSEvent, String, Integer> winDataTable;
+    private static Table<MLSEvent, String, Integer> gameDataTable;
+    private static Table<MLSEvent, String, Date> winDataTableLastUpdate;
+    private static Table<MLSEvent, String, Date> gameDataTableLastUpdate;
+
+    public static int getWin(DataBase dataBase, MLSEvent event, String uuid) {
+        if (winDataTableLastUpdate == null) winDataTableLastUpdate = HashBasedTable.create();;
+        if (winDataTableLastUpdate.get(event, uuid) != null && winDataTable.get(event, uuid) != null) {
+            Date lastUpdate = winDataTableLastUpdate.get(event, uuid);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date());
+            calendar.add(Calendar.MINUTE, -1);
+            Calendar calendar1 = Calendar.getInstance();
+            calendar1.setTime(lastUpdate);
+            if(calendar1.after(calendar)){ // 前回のロードが現在から5分前よりも未来なら
+                return winDataTable.get(event, uuid);
+            }
+        }
+
+        Date now = new Date();
+
+        String sql = "select * from " + event.getDatabase() + " where uuid=?";
+        try(Connection con = dataBase.getDataSource().getConnection();
+            PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.setString(1, uuid);
+            ResultSet result = prestat.executeQuery();
+            if (result.next()) {
+                int num = result.getInt(3);
+                winDataTable.put(event, uuid, num);
+                winDataTableLastUpdate.put(event, uuid, now);
+                return num;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        winDataTableLastUpdate.put(event, uuid, now);
+        winDataTable.put(event, uuid, 0);
+        return 0;
+    }
+
+    public static int getWin(DataBase dataBase, MLSEvent event, UUID uuid) {
+        return getWin(dataBase, event, uuid.toString());
+    }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addWin(String uuid, int i) {
         if (dataBase == null) {
             Log.error("load関数を実行してください。");
@@ -46,6 +100,9 @@ public class EventUtil {
         }
     }
 
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addWin(String table_name, String uuid, int i) {
         if (dataBase == null) {
             Log.error("load関数を実行してください。");
@@ -70,6 +127,9 @@ public class EventUtil {
         }
     }
 
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addWin(DataBase dataBase, String table_name, String uuid, int i) {
         gameData.putIfAbsent(uuid, 0);
         winData.putIfAbsent(uuid, 0);
@@ -89,17 +149,99 @@ public class EventUtil {
         }
     }
 
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addWin(String uuid) { addWin(uuid, 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addWin(UUID uuid) { addWin(uuid.toString(), 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addWin(String table_name, String uuid) { addWin(table_name, uuid, 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addWin(String table_name, UUID uuid) { addWin(table_name, uuid.toString(), 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addWin(DataBase dataBase, String table_name, String uuid) { addWin(dataBase, table_name, uuid, 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addWin(DataBase dataBase, String table_name, UUID uuid) { addWin(dataBase, table_name, uuid.toString(), 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addWin(MLSEvent event, String uuid) { addWin(event.getDatabase(), uuid, 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addWin(MLSEvent event, UUID uuid) { addWin(event.getDatabase(), uuid.toString(), 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addWin(DataBase dataBase, MLSEvent event, String uuid) { addWin(dataBase, event.getDatabase(), uuid, 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addWin(DataBase dataBase, MLSEvent event, UUID uuid) { addWin(dataBase, event.getDatabase(), uuid.toString(), 1); }
 
+
+    public static int getGame(DataBase dataBase, MLSEvent event, String uuid) {
+        if (gameDataTableLastUpdate == null) gameDataTableLastUpdate = HashBasedTable.create();;
+        if (gameDataTableLastUpdate.get(event, uuid) != null && gameDataTable.get(event, uuid) != null) {
+            Date lastUpdate = gameDataTableLastUpdate.get(event, uuid);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date());
+            calendar.add(Calendar.MINUTE, -1);
+            Calendar calendar1 = Calendar.getInstance();
+            calendar1.setTime(lastUpdate);
+            if(calendar1.after(calendar)){ // 前回のロードが現在から5分前よりも未来なら
+                return gameDataTable.get(event, uuid);
+            }
+        }
+
+        Date now = new Date();
+
+        String sql = "select * from " + event.getDatabase() + " where uuid=?";
+        try(Connection con = dataBase.getDataSource().getConnection();
+            PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.setString(1, uuid);
+            ResultSet result = prestat.executeQuery();
+            if (result.next()) {
+                int num = result.getInt(2);
+                gameDataTable.put(event, uuid, num);
+                gameDataTableLastUpdate.put(event, uuid, now);
+                return num;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        gameDataTableLastUpdate.put(event, uuid, now);
+        gameDataTable.put(event, uuid, 0);
+        return 0;
+    }
+
+    public static int getGame(DataBase dataBase, MLSEvent event, UUID uuid) {
+        return getGame(dataBase, event, uuid.toString());
+    }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addGame(String uuid, int i) {
         if (dataBase == null) {
             Log.error("load関数を実行してください。");
@@ -124,6 +266,9 @@ public class EventUtil {
         }
     }
 
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addGame(String table_name, String uuid, int i) {
         if (dataBase == null) {
             Log.error("load関数を実行してください。");
@@ -148,6 +293,9 @@ public class EventUtil {
         }
     }
 
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addGame(DataBase dataBase, String table_name, String uuid, int i) {
         gameData.putIfAbsent(uuid, 0);
         winData.putIfAbsent(uuid, 0);
@@ -167,15 +315,54 @@ public class EventUtil {
         }
     }
 
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addGame(String uuid) { addGame(uuid, 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addGame(UUID uuid) { addGame(uuid.toString(), 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addGame(String table_name, String uuid) { addGame(table_name, uuid, 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addGame(String table_name, UUID uuid) { addGame(table_name, uuid.toString(), 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addGame(DataBase dataBase, String table_name, String uuid) { addGame(dataBase, table_name, uuid, 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addGame(DataBase dataBase, String table_name, UUID uuid) { addGame(dataBase, table_name, uuid.toString(), 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addGame(MLSEvent event, String uuid) { addGame(event.getDatabase(), uuid, 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addGame(MLSEvent event, UUID uuid) { addGame(event.getDatabase(), uuid.toString(), 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addGame(DataBase dataBase, MLSEvent event, String uuid) { addGame(dataBase, event.getDatabase(), uuid, 1); }
+
+    /**
+     * @deprecated {@link EventAPI}
+     */
     public static void addGame(DataBase dataBase, MLSEvent event, UUID uuid) { addGame(dataBase, event.getDatabase(), uuid.toString(), 1); }
 
     /* 以下、addWinsとaddGames */
@@ -271,6 +458,7 @@ public class EventUtil {
 
     /**
      * HighFunctionalityLib 必須
+     * @deprecated
      * @param table
      * @param plugin
      */
