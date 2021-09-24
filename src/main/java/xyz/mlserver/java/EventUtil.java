@@ -9,8 +9,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class EventUtil {
@@ -98,6 +101,57 @@ public class EventUtil {
 
     public static int getGame(DataBase dataBase, MLSEvent event, UUID uuid) {
         return getGame(dataBase, event, uuid.toString());
+    }
+
+    public static List<String> getRanking(DataBase dataBase, MLSEvent event) {
+        String table_name = event.getDatabase();
+        List<String> list = new ArrayList<>();
+        int i = 0;
+        String sql = "SELECT * FROM " + table_name + " order by win desc;";
+        try(Connection con = dataBase.getDataSource().getConnection();
+            PreparedStatement prestat = con.prepareStatement(sql)) {
+            ResultSet result = prestat.executeQuery();
+            while(result.next()) {
+                if (i >= 9) break;
+                list.add(result.getString(1));
+                i++;
+            }
+        } catch (Exception ignored) { }
+        return list;
+    }
+
+    public static HashMap<Integer, String> getRankingWithRanking(DataBase dataBase, MLSEvent event) {
+        String table_name = event.getDatabase();
+        HashMap<Integer, String> map = new HashMap<>();
+        int i = 1;
+        String sql = "SELECT * FROM " + table_name + " order by win desc;";
+        try(Connection con = dataBase.getDataSource().getConnection();
+            PreparedStatement prestat = con.prepareStatement(sql)) {
+            ResultSet result = prestat.executeQuery();
+            while(result.next()) {
+                if (i >= 10) break;
+                map.put(i, result.getString(1));
+                i++;
+            }
+        } catch (Exception ignored) { }
+        return map;
+    }
+
+    public static HashMap<String, Integer> getRankingData(DataBase dataBase, MLSEvent event) {
+        String table_name = event.getDatabase();
+        HashMap<String, Integer> map = new HashMap<>();
+        int i = 0;
+        String sql = "SELECT * FROM " + table_name + " order by win desc;";
+        try(Connection con = dataBase.getDataSource().getConnection();
+            PreparedStatement prestat = con.prepareStatement(sql)) {
+            ResultSet result = prestat.executeQuery();
+            while(result.next()) {
+                if (i >= 20) break;
+                map.put(result.getString(1), result.getInt(3));
+                i++;
+            }
+        } catch (Exception ignored) { }
+        return map;
     }
 
 }
