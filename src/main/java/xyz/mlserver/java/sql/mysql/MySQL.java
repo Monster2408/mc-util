@@ -55,23 +55,23 @@ public class MySQL {
     }
 
     public static String getHostFromHFL(Plugin plugin) {
-        return plugin.getConfig().getString("host");
+        return plugin.getConfig().getString("mysql.host");
     }
 
     public static int getPortFromHFL(Plugin plugin) {
-        return plugin.getConfig().getInt("port");
+        return plugin.getConfig().getInt("mysql.port");
     }
 
     public static String getDataBaseFromHFL(Plugin plugin) {
-        return plugin.getConfig().getString("database");
+        return plugin.getConfig().getString("mysql.database");
     }
 
     public static String getUsernameFromHFL(Plugin plugin) {
-        return plugin.getConfig().getString("username");
+        return plugin.getConfig().getString("mysql.username");
     }
 
     public static String getPasswordFromHFL(Plugin plugin) {
-        return plugin.getConfig().getString("password");
+        return plugin.getConfig().getString("mysql.password");
     }
 
 }
