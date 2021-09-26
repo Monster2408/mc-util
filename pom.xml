@@ -6,7 +6,7 @@
 
     <groupId>xyz.mlserver</groupId>
     <artifactId>minecraft</artifactId>
-    <version>1.2.14-SNAPSHOT-13</version>
+    <version>1.2.14-SNAPSHOT-14</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -29,7 +29,7 @@
         -->
         <repository>
             <id>github</id>
-            <name>minecraft</name>
+            <name>repo.mlserver.xyz</name>
             <url>https://maven.pkg.github.com/Monster2408/repo.mlserver.xyz</url>
         </repository>
     </distributionManagement>
