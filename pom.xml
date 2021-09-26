@@ -21,9 +21,16 @@
     </properties>
 
     <distributionManagement>
+        <!--
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
+        </repository>
+        -->
+        <repository>
+            <id>github</id>
+            <name>minecraft</name>
+            <url>https://maven.pkg.github.com/Monster2408/repo.mlserver.xyz</url>
         </repository>
     </distributionManagement>
 
