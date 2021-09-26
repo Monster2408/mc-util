@@ -7,7 +7,7 @@ public class MySQL {
     private final String host, database, username, password, properties;
     private final int port;
 
-    private static final String temp_properties = "serverTimezone=JST";
+    private static final String temp_properties = "useSSL=false&useLegacyDatetimeCode=false&autoReconnect=true&serverTimezone=JST";
 
     public MySQL(String host, int port, String database, String username, String password, String properties) {
         this.host = host;

@@ -35,6 +35,7 @@ public class AdvanceDataBase {
             config.setJdbcUrl(sql_url);
             config.setUsername(mysql.getUsername());
             config.setPassword(mysql.getPassword());
+            config.setConnectionTimeout(250);
         }
     }
 
