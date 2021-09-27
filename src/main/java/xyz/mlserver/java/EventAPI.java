@@ -44,13 +44,19 @@ public class EventAPI {
         winData.put(uuid, winData.get(uuid) + i);
 
         String sql = "insert into " + table_name + " (uuid, game, win) "
-                + "VALUES ('"+uuid+"', " + gameData.get(uuid) + ", " + winData.get(uuid) + ") "
+                + "VALUES (?, ?, ?) "
                 +"ON DUPLICATE KEY UPDATE "
-                +"uuid='" + uuid + "', "
-                +"game=" + gameData.get(uuid) + ", "
-                +"win=" + winData.get(uuid) + ";";
+                +"uuid=?, "
+                +"game=?, "
+                +"win=?;";
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.setString(1, uuid);
+            prestat.setInt(2, gameData.get(uuid));
+            prestat.setInt(3, winData.get(uuid));
+            prestat.setString(4, uuid);
+            prestat.setInt(5, gameData.get(uuid));
+            prestat.setInt(6, winData.get(uuid));
             prestat.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,13 +70,19 @@ public class EventAPI {
         winData.put(uuid, winData.get(uuid) + i);
 
         String sql = "insert into " + table_name + " (uuid, game, win) "
-                + "VALUES ('"+uuid+"', " + gameData.get(uuid) + ", " + winData.get(uuid) + ") "
+                + "VALUES (?, ?, ?) "
                 +"ON DUPLICATE KEY UPDATE "
-                +"uuid='" + uuid + "', "
-                +"game=" + gameData.get(uuid) + ", "
-                +"win=" + winData.get(uuid) + ";";
+                +"uuid=?, "
+                +"game=?, "
+                +"win=?;";
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.setString(1, uuid);
+            prestat.setInt(2, gameData.get(uuid));
+            prestat.setInt(3, winData.get(uuid));
+            prestat.setString(4, uuid);
+            prestat.setInt(5, gameData.get(uuid));
+            prestat.setInt(6, winData.get(uuid));
             prestat.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -95,13 +107,19 @@ public class EventAPI {
         gameData.put(uuid, gameData.get(uuid) + i);
 
         String sql = "insert into " + table_name + " (uuid, game, win) "
-                + "VALUES ('"+uuid+"', " + gameData.get(uuid) + ", " + winData.get(uuid) + ") "
+                + "VALUES (?, ?, ?) "
                 +"ON DUPLICATE KEY UPDATE "
-                +"uuid='" + uuid + "', "
-                +"game=" + gameData.get(uuid) + ", "
-                +"win=" + winData.get(uuid) + ";";
+                +"uuid=?, "
+                +"game=?, "
+                +"win=?;";
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.setString(1, uuid);
+            prestat.setInt(2, gameData.get(uuid));
+            prestat.setInt(3, winData.get(uuid));
+            prestat.setString(4, uuid);
+            prestat.setInt(5, gameData.get(uuid));
+            prestat.setInt(6, winData.get(uuid));
             prestat.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

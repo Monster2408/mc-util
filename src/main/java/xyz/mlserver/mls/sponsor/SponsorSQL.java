@@ -116,12 +116,16 @@ public class SponsorSQL {
         }
 
         String sql = "insert into new_sponsor (uuid, date) "
-                + "VALUES ('"+uuid+"', '" + key + "') "
+                + "VALUES (?, ?) "
                 +"ON DUPLICATE KEY UPDATE "
-                +"uuid='" + uuid + "', "
-                +"date='" + key + "';";
+                +"uuid=?, "
+                +"date=?;";
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.setString(1, uuid);
+            prestat.setString(2, key);
+            prestat.setString(3, uuid);
+            prestat.setString(4, key);
             prestat.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -183,12 +187,16 @@ public class SponsorSQL {
         }
 
         String sql = "insert into new_sponsor (uuid, date) "
-                + "VALUES ('"+uuid+"', '" + key + "') "
+                + "VALUES (?, ?) "
                 +"ON DUPLICATE KEY UPDATE "
-                +"uuid='" + uuid + "', "
-                +"date='" + key + "';";
+                +"uuid=?, "
+                +"date=?;";
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.setString(1, uuid);
+            prestat.setString(2, key);
+            prestat.setString(3, uuid);
+            prestat.setString(4, key);
             prestat.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
