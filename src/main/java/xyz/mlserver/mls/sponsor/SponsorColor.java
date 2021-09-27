@@ -54,7 +54,8 @@ public class SponsorColor {
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
             prestat.setString(1, uuid);
-            try(ResultSet rs = prestat.executeQuery() ) {
+            ResultSet rs = prestat.executeQuery();
+            if(rs.next()) {
                 return Color.getNameToColor(rs.getString(2));
             }
         } catch (SQLException e) {
