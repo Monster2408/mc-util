@@ -15,14 +15,14 @@ import java.util.UUID;
 public class SponsorColor {
 
     private final UUID uuid;
-    private Color color;
+    private ChatColor color;
 
     public SponsorColor(UUID uuid) {
         this.uuid  = uuid;
         this.color = null;
     }
 
-    public void setColor(Color color) {
+    public void setColor(ChatColor color) {
         this.color = color;
         Bukkit.getPluginManager().callEvent(new ChangeSponsorColor(this.uuid, this.color));
     }
@@ -31,53 +31,47 @@ public class SponsorColor {
         return uuid;
     }
 
-    public Color getColor() {
+    public ChatColor getColor() {
         return color;
     }
 
     public void save(DataBase dataBase) {
         String sql = "insert into sponsor_color (uuid, color) "
-                + "VALUES ('"+uuid+"', " + color.toString() + ") "
+                + "VALUES (?, ?) "
                 + "ON DUPLICATE KEY UPDATE "
-                + "uuid='" + uuid + "', "
-                + "color=" + color.toString() + ";";
+                + "uuid=?, "
+                + "color=?;";
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.setString(1, uuid.toString());
+            prestat.setString(2, color.toString());
+            prestat.setString(3, uuid.toString());
+            prestat.setString(4, color.toString());
             prestat.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static ChatColor load(String uuid, DataBase dataBase) {
+    public static ChatColor load(DataBase dataBase, String uuid, ChatColor color) {
         String sql = "select * from sponsor_color where uuid=?;";
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
             prestat.setString(1, uuid);
             ResultSet rs = prestat.executeQuery();
             if(rs.next()) {
-                return Color.getNameToColor(rs.getString(2));
+                return ChatColor.valueOf(rs.getString(2));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
-    }
-
-    public static ChatColor load(DataBase dataBase, UUID uuid, ChatColor defaultColor) {
-        return load(dataBase, uuid.toString(), defaultColor);
-    }
-
-    public static ChatColor load(DataBase dataBase, String uuid, ChatColor defaultColor) {
-        ChatColor color = load(uuid, dataBase);
-        if (color == null) color = defaultColor;
         return color;
     }
 
-    public static ChatColor load(UUID uuid, DataBase dataBase) { return load(uuid.toString(), dataBase); }
+    public static ChatColor load(DataBase dataBase, UUID uuid, ChatColor defaultColor) { return load(dataBase, uuid.toString(), defaultColor); }
 
-    public static ChatColor load(DataBase dataBase, UUID uuid) { return load(uuid.toString(), dataBase); }
+    public static ChatColor load(DataBase dataBase, String uuid) { return load(dataBase, uuid, null); }
 
-    public static ChatColor load(DataBase dataBase, String uuid) { return load(uuid, dataBase); }
+    public static ChatColor load(DataBase dataBase, UUID uuid) { return load(dataBase, uuid.toString()); }
 
 }

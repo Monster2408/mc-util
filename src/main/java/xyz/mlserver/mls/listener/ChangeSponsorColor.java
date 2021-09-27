@@ -1,5 +1,6 @@
 package xyz.mlserver.mls.listener;
 
+import org.bukkit.ChatColor;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import xyz.mlserver.mc.util.Color;
@@ -20,9 +21,9 @@ public class ChangeSponsorColor extends Event {
     }
 
     private final UUID uuid;
-    private final Color color;
+    private final ChatColor color;
 
-    public ChangeSponsorColor(UUID uuid, Color color) {
+    public ChangeSponsorColor(UUID uuid, ChatColor color) {
         this.uuid  = uuid;
         this.color = color;
     }
@@ -31,7 +32,7 @@ public class ChangeSponsorColor extends Event {
         return uuid;
     }
 
-    public Color getColor() {
+    public ChatColor getColor() {
         return color;
     }
 
