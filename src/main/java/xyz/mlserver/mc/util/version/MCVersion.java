@@ -21,6 +21,7 @@ public enum MCVersion {
 
     v1_18                        (1,          1,    true,       "1.18"), // not released; set to release in late 2021. Caves & Cliffs: Part II
 
+    SNAPSHOT_21W38A              (0x4000002A, 2835, true, v1_18,"21w38a"),
     SNAPSHOT_21W37A              (0x40000029, 2834, true, v1_18,"21w37a"),
     v1_18_EXPERIMENTAL_SNAPSHOT_7(0x4000002F, 2831, true, v1_18,"1.18_experimental-snapshot-7"),
     v1_18_EXPERIMENTAL_SNAPSHOT_6(0x4000002E, 2830, true, v1_18,"1.18_experimental-snapshot-6"),
