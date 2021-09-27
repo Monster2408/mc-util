@@ -2,6 +2,7 @@ package xyz.mlserver.mls.sponsor;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import xyz.mlserver.java.Log;
 import xyz.mlserver.java.sql.DataBase;
 import xyz.mlserver.mc.util.Color;
 import xyz.mlserver.mls.listener.ChangeSponsorColor;
@@ -60,7 +61,12 @@ public class SponsorColor {
             prestat.setString(1, uuid);
             ResultSet rs = prestat.executeQuery();
             if(rs.next()) {
-                return ChatColor.valueOf(rs.getString(2));
+                try {
+                    Log.debug(rs.getString(2));
+                    color = ChatColor.valueOf(rs.getString(2));
+                } catch (IllegalArgumentException e) {
+                    Log.error("Illegal ChatColor: " + rs.getString(2));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -72,6 +78,6 @@ public class SponsorColor {
 
     public static ChatColor load(DataBase dataBase, String uuid) { return load(dataBase, uuid, null); }
 
-    public static ChatColor load(DataBase dataBase, UUID uuid) { return load(dataBase, uuid.toString()); }
+    public static ChatColor load(DataBase dataBase, UUID uuid) { return load(dataBase, uuid.toString(), null); }
 
 }

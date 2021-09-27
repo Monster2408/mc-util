@@ -245,30 +245,23 @@ public class SponsorSQL {
             }
         }
 
-        int error = OpenConnection();
-        if (error == -1) {
-            Log.error("HighFunctionalityLibがねえ...");
-        } else if (error == 0) {
-            Log.error("MySQLエラー");
-        } else {
-            String sql = "SELECT * FROM new_sponsor where uuid=?;";
-            try(Connection con = dataBase.getDataSource().getConnection();
-                PreparedStatement prestat = con.prepareStatement(sql)) {
-                prestat.setString(1, uuid);
-                ResultSet result = prestat.executeQuery();
-                boolean found = result.next();
+        String sql = "SELECT * FROM new_sponsor where uuid=?;";
+        try(Connection con = dataBase.getDataSource().getConnection();
+            PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.setString(1, uuid);
+            ResultSet result = prestat.executeQuery();
+            boolean found = result.next();
 
-                if (found) {
-                    String strDate = result.getString(2);
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                    Date sponsorDate = dateFormat.parse(strDate);
-                    sponsorTime.put(uuid, sponsorDate);
-                    sponsorTimeLastUpdate.put(uuid, new Date());
-                    return sponsorDate;
-                }
-            } catch (SQLException | ParseException e) {
-                e.printStackTrace();
+            if (found) {
+                String strDate = result.getString(2);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date sponsorDate = dateFormat.parse(strDate);
+                sponsorTime.put(uuid, sponsorDate);
+                sponsorTimeLastUpdate.put(uuid, new Date());
+                return sponsorDate;
             }
+        } catch (SQLException | ParseException e) {
+            e.printStackTrace();
         }
         return null;
     }
