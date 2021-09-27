@@ -64,6 +64,16 @@ public class SponsorColor {
         return null;
     }
 
+    public static ChatColor load(DataBase dataBase, UUID uuid, ChatColor defaultColor) {
+        return load(dataBase, uuid.toString(), defaultColor);
+    }
+
+    public static ChatColor load(DataBase dataBase, String uuid, ChatColor defaultColor) {
+        ChatColor color = load(uuid, dataBase);
+        if (color == null) color = defaultColor;
+        return color;
+    }
+
     public static ChatColor load(UUID uuid, DataBase dataBase) { return load(uuid.toString(), dataBase); }
 
     public static ChatColor load(DataBase dataBase, UUID uuid) { return load(uuid.toString(), dataBase); }
