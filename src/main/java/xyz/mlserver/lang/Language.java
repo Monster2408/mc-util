@@ -16,4 +16,11 @@ public enum Language {
 
     public String getName() { return name; }
     public String getId() { return id; }
+
+    public Language fromId(String id) {
+        for (Language language : Language.values()) {
+            if (language.getId().equalsIgnoreCase(id)) return language;
+        }
+        return null;
+    }
 }
