@@ -4,7 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import xyz.mlserver.java.Log;
 import xyz.mlserver.java.sql.DataBase;
-import xyz.mlserver.mc.util.Color;
 import xyz.mlserver.mls.listener.ChangeSponsorColor;
 
 import java.sql.Connection;
@@ -62,10 +61,10 @@ public class SponsorColor {
             ResultSet rs = prestat.executeQuery();
             if(rs.next()) {
                 try {
-                    Log.debug(rs.getString(2));
-                    color = ChatColor.valueOf(rs.getString(2));
+                    Log.debug(rs.getString("color"));
+                    color = ChatColor.valueOf(rs.getString("color"));
                 } catch (IllegalArgumentException e) {
-                    Log.error("Illegal ChatColor: " + rs.getString(2));
+                    Log.error("Illegal ChatColor: " + rs.getString("color"));
                 }
             }
         } catch (SQLException e) {
