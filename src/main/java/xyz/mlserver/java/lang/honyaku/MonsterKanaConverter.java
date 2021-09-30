@@ -1,4 +1,4 @@
-package xyz.mlserver.lang.honyaku;
+package xyz.mlserver.java.lang.honyaku;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSortedMap;

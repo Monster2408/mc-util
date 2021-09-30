@@ -1,4 +1,6 @@
-package xyz.mlserver.java;
+package xyz.mlserver.discord;
+
+import xyz.mlserver.java.Log;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.awt.Color;

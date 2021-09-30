@@ -1,4 +1,4 @@
-package xyz.mlserver.mc.util;
+package xyz.mlserver.mc.util.version;
 
 import com.viaversion.viaversion.api.Via;
 import org.bukkit.entity.Player;

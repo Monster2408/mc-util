@@ -1,4 +1,4 @@
-package xyz.mlserver.lang;
+package xyz.mlserver.java.lang;
 
 public enum Language {
     ENGLISH("ENGLISH", "english"),

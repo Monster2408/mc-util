@@ -1,28 +1,21 @@
-package xyz.mlserver.java;
+package xyz.mlserver.mls.event;
 
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 import xyz.mlserver.java.sql.DataBase;
-import xyz.mlserver.java.sql.mysql.MySQL;
-import xyz.mlserver.mls.MLSEvent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.UUID;
 
-public class EventAPI {
+public class EventSQL {
 
     private final DataBase dataBase;
     private final String table_name;
     private HashMap<String, Integer> winData;
     private HashMap<String, Integer> gameData;
 
-    public EventAPI(String table_name, DataBase dataBase) {
+    public EventSQL(String table_name, DataBase dataBase) {
         this.table_name = table_name;
         this.dataBase = dataBase;
         this.winData = new HashMap<>();

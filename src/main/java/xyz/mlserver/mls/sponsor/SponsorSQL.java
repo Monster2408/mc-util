@@ -5,7 +5,7 @@ import org.bukkit.ChatColor;
 
 import org.bukkit.plugin.Plugin;
 import xyz.mlserver.java.Log;
-import xyz.mlserver.java.MySQLUtil;
+import xyz.mlserver.java.sql.MySQLUtil;
 import xyz.mlserver.java.sql.DataBase;
 import xyz.mlserver.java.sql.mysql.MySQL;
 
@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 public class SponsorSQL {
@@ -250,9 +249,9 @@ public class SponsorSQL {
             PreparedStatement prestat = con.prepareStatement(sql)) {
             prestat.setString(1, uuid);
             ResultSet result = prestat.executeQuery();
-            boolean found = result.next();
-
-            if (found) {
+            if (result.next()) {
+                result.beforeFirst();
+                result.next();
                 String strDate = result.getString(2);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date sponsorDate = dateFormat.parse(strDate);

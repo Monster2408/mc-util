@@ -1,8 +1,6 @@
-package xyz.mlserver.lang;
+package xyz.mlserver.java.lang;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import xyz.mlserver.java.sql.DataBase;
 
 import java.sql.Connection;

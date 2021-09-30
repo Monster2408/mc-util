@@ -1,7 +1,8 @@
-package xyz.mlserver.java;
+package xyz.mlserver.java.sql;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
+import xyz.mlserver.mls.event.EventUtil;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
