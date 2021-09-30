@@ -53,22 +53,26 @@ public class SponsorColor {
         }
     }
 
-    public static ChatColor load(DataBase dataBase, String uuid, ChatColor color) {
+    public static ChatColor load(DataBase dataBase, String uuid, ChatColor defaultColor) {
         String sql = "select * from sponsor_color where uuid=?;";
+        ChatColor color;
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
             prestat.setString(1, uuid);
             ResultSet rs = prestat.executeQuery();
-            if(rs.next()) {
-                try {
-                    Log.debug(rs.getString("color"));
+            try {
+                if(rs.next()) {
+                    rs.beforeFirst();
+                    rs.next();
                     color = ChatColor.valueOf(rs.getString("color"));
-                } catch (IllegalArgumentException e) {
-                    Log.error("Illegal ChatColor: " + rs.getString("color"));
+                } else {
+                    color = defaultColor;
                 }
+            } catch (Exception e) {
+                color = defaultColor;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            color = defaultColor;
         }
         return color;
     }
