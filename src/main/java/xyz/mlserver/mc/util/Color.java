@@ -59,6 +59,14 @@ public class Color {
     }
 
     public static ChatColor getCodeToColor(String code) {
+        if (code.length() == 2) {
+            if (String.valueOf(code.charAt(0)).equalsIgnoreCase("&") || String.valueOf(code.charAt(0)).equalsIgnoreCase("§")) {
+                code = String.valueOf(code.charAt(1));
+            } else {
+                return null;
+            }
+
+        }
         switch (code.toLowerCase()) {
             case "0":
                 return ChatColor.BLACK;
