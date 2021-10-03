@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import xyz.mlserver.mc.util.version.MCVersion;
 import xyz.mlserver.util.ICollectionList;
 
+import java.util.List;
 import java.util.Objects;
 
 public class MCVersionUtil {
@@ -15,11 +16,13 @@ public class MCVersionUtil {
      * @return
      */
     public static String getByProtocolVersion(int protocolVersion) {
-        return MCVersion.getByProtocolVersion(protocolVersion).get(0).getName();
+        List<MCVersion> versions = MCVersion.getByProtocolVersion(protocolVersion);
+        if (versions.get(0) == null) return MCVersion.UNKNOWN.getName();
+        return versions.get(0).getName();
     }
 
     public static String getByProtocolVersion(Player player) {
-        return getReleaseVersionIfPossible(Via.getAPI().getPlayerVersion(player.getUniqueId())).getName();
+        return getByProtocolVersion(Via.getAPI().getPlayerVersion(player.getUniqueId()));
     }
 
     public static MCVersion getReleaseVersionIfPossible(int protocolVersion) {
