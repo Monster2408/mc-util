@@ -700,7 +700,11 @@ public enum MCVersion {
         this.dataVersion = dataVersion;
         this.mcVersion = mcVersion;
         this.name = name;
-        this.type = type;
+        if (mcVersion == null) {
+            this.type = VersionType.RELEASE;
+        } else {
+            this.type = type;
+        }
     }
 
     MCVersion(int protocolVersion, MCVersion mcVersion, String name) {
