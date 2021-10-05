@@ -65,7 +65,6 @@ public class Color {
             } else {
                 return null;
             }
-
         }
         switch (code.toLowerCase()) {
             case "0":
