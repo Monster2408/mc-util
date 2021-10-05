@@ -1,4 +1,4 @@
-package xyz.mlserver.mc.util;
+package xyz.mlserver.mc.util.itemstack;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

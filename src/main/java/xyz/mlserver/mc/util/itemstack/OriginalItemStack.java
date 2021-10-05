@@ -1,4 +1,4 @@
-package xyz.mlserver.mc.util;
+package xyz.mlserver.mc.util.itemstack;
 
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
 import com.comphenix.protocol.wrappers.WrappedSignedProperty;

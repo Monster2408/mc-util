@@ -5,7 +5,7 @@ import org.bukkit.ChatColor;
 
 import org.bukkit.plugin.Plugin;
 import xyz.mlserver.java.Log;
-import xyz.mlserver.java.MySQLUtil;
+import xyz.mlserver.java.sql.MySQLUtil;
 import xyz.mlserver.java.sql.DataBase;
 import xyz.mlserver.java.sql.mysql.MySQL;
 
@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 public class SponsorSQL {
@@ -116,12 +115,16 @@ public class SponsorSQL {
         }
 
         String sql = "insert into new_sponsor (uuid, date) "
-                + "VALUES ('"+uuid+"', '" + key + "') "
+                + "VALUES (?, ?) "
                 +"ON DUPLICATE KEY UPDATE "
-                +"uuid='" + uuid + "', "
-                +"date='" + key + "';";
+                +"uuid=?, "
+                +"date=?;";
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.setString(1, uuid);
+            prestat.setString(2, key);
+            prestat.setString(3, uuid);
+            prestat.setString(4, key);
             prestat.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -183,12 +186,16 @@ public class SponsorSQL {
         }
 
         String sql = "insert into new_sponsor (uuid, date) "
-                + "VALUES ('"+uuid+"', '" + key + "') "
+                + "VALUES (?, ?) "
                 +"ON DUPLICATE KEY UPDATE "
-                +"uuid='" + uuid + "', "
-                +"date='" + key + "';";
+                +"uuid=?, "
+                +"date=?;";
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.setString(1, uuid);
+            prestat.setString(2, key);
+            prestat.setString(3, uuid);
+            prestat.setString(4, key);
             prestat.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -237,30 +244,23 @@ public class SponsorSQL {
             }
         }
 
-        int error = OpenConnection();
-        if (error == -1) {
-            Log.error("HighFunctionalityLibがねえ...");
-        } else if (error == 0) {
-            Log.error("MySQLエラー");
-        } else {
-            String sql = "SELECT * FROM new_sponsor where uuid=?;";
-            try(Connection con = dataBase.getDataSource().getConnection();
-                PreparedStatement prestat = con.prepareStatement(sql)) {
-                prestat.setString(1, uuid);
-                ResultSet result = prestat.executeQuery();
-                boolean found = result.next();
-
-                if (found) {
-                    String strDate = result.getString(2);
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                    Date sponsorDate = dateFormat.parse(strDate);
-                    sponsorTime.put(uuid, sponsorDate);
-                    sponsorTimeLastUpdate.put(uuid, new Date());
-                    return sponsorDate;
-                }
-            } catch (SQLException | ParseException e) {
-                e.printStackTrace();
+        String sql = "SELECT * FROM new_sponsor where uuid=?;";
+        try(Connection con = dataBase.getDataSource().getConnection();
+            PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.setString(1, uuid);
+            ResultSet result = prestat.executeQuery();
+            if (result.next()) {
+                result.beforeFirst();
+                result.next();
+                String strDate = result.getString(2);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date sponsorDate = dateFormat.parse(strDate);
+                sponsorTime.put(uuid, sponsorDate);
+                sponsorTimeLastUpdate.put(uuid, new Date());
+                return sponsorDate;
             }
+        } catch (SQLException | ParseException e) {
+            e.printStackTrace();
         }
         return null;
     }

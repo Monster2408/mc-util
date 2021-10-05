@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>xyz.mlserver</groupId>
-    <artifactId>minecraft</artifactId>
-    <version>1.2.14-SNAPSHOT-13</version>
+    <artifactId>repo.mlserver.xyz</artifactId>
+    <version>1.2.14-SNAPSHOT-29</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -21,9 +21,16 @@
     </properties>
 
     <distributionManagement>
+        <!--
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
+        </repository>
+        -->
+        <repository>
+            <id>github</id>
+            <name>repo.mlserver.xyz</name>
+            <url>https://maven.pkg.github.com/Monster2408/repo.mlserver.xyz</url>
         </repository>
     </distributionManagement>
 

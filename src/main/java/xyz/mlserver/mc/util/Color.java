@@ -17,6 +17,9 @@ public class Color {
     }
 
     public static ChatColor getNameToColor(String color) {
+        if (color.length() == 2) {
+            return getCodeToColor(color);
+        }
         switch (color.toLowerCase()) {
             case "black":
                 return ChatColor.BLACK;
@@ -49,6 +52,52 @@ public class Color {
             case "yellow":
                 return ChatColor.YELLOW;
             case "white":
+                return ChatColor.WHITE;
+            default:
+                return null;
+        }
+    }
+
+    public static ChatColor getCodeToColor(String code) {
+        if (code.length() == 2) {
+            if (String.valueOf(code.charAt(0)).equalsIgnoreCase("&") || String.valueOf(code.charAt(0)).equalsIgnoreCase("§")) {
+                code = String.valueOf(code.charAt(1));
+            } else {
+                return null;
+            }
+        }
+        switch (code.toLowerCase()) {
+            case "0":
+                return ChatColor.BLACK;
+            case "1":
+                return ChatColor.DARK_BLUE;
+            case "2":
+                return ChatColor.DARK_GREEN;
+            case "3":
+                return ChatColor.DARK_AQUA;
+            case "4":
+                return ChatColor.DARK_RED;
+            case "5":
+                return ChatColor.DARK_PURPLE;
+            case "6":
+                return ChatColor.GOLD;
+            case "7":
+                return ChatColor.GRAY;
+            case "8":
+                return ChatColor.DARK_GRAY;
+            case "9":
+                return ChatColor.BLUE;
+            case "a":
+                return ChatColor.GREEN;
+            case "b":
+                return ChatColor.AQUA;
+            case "c":
+                return ChatColor.RED;
+            case "d":
+                return ChatColor.LIGHT_PURPLE;
+            case "e":
+                return ChatColor.YELLOW;
+            case "f":
                 return ChatColor.WHITE;
             default:
                 return null;

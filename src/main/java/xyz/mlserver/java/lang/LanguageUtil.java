@@ -1,4 +1,4 @@
-package xyz.mlserver.lang;
+package xyz.mlserver.java.lang;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.google.common.collect.HashBasedTable;
@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import xyz.mlserver.mc.util.OriginalItemStack;
+import xyz.mlserver.mc.util.itemstack.OriginalItemStack;
 import xyz.mlserver.mc.util.skull.SkullVar;
 
 import java.util.HashMap;

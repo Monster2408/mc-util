@@ -1,4 +1,4 @@
-package xyz.mlserver.java;
+package xyz.mlserver.mls.event;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;

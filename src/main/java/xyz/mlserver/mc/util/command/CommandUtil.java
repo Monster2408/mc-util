@@ -1,4 +1,4 @@
-package xyz.mlserver.mc.util;
+package xyz.mlserver.mc.util.command;
 
 import org.bukkit.command.CommandSender;
 
@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * ヘルプコマンドを作るためのｸﾗｽ
- * @deprecated 新規ｸﾗｽが誕生しました。V2.0で削除予定 {@link CmdUtil}
+ * @deprecated 新規ｸﾗｽが誕生しました。V2.0で削除予定
  */
 public class CommandUtil {
 

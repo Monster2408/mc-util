@@ -1,4 +1,4 @@
-package xyz.mlserver.mc.util;
+package xyz.mlserver.mc.util.command;
 
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
