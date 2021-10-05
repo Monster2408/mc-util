@@ -48,6 +48,7 @@ public class SponsorColor {
                 if(rs.next()) {
                     rs.beforeFirst();
                     rs.next();
+                    Log.debug(rs.getString("color"));
                     color = Color.getNameToColor(rs.getString("color"));
                 } else {
                     color = defaultColor;
