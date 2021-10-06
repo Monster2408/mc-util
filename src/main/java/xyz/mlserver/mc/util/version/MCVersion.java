@@ -8,12 +8,12 @@ import java.util.Map;
 public enum MCVersion {
 
     /*
-        参考サイト
+        sanko- site
         https://minecraft.fandom.com/wiki/Protocol_version#Java_Edition
     */
 
 
-    v1_18(1, -1, "1.18", VersionType.RELEASE),
+    v1_18(1, -1, null, "1.18", VersionType.RELEASE),
     SNAPSHOT_21W39A              (0x4000002B, 2836, v1_18,"snapshot_21w39a", VersionType.SNAPSHOT),
     SNAPSHOT_21W38A              (0x4000002A, 2835, v1_18,"snapshot_21w38a", VersionType.SNAPSHOT),
     SNAPSHOT_21W37A              (0x40000029, 2834, v1_18,"snapshot_21w37a", VersionType.SNAPSHOT),
@@ -26,14 +26,14 @@ public enum MCVersion {
     v1_18_EXPERIMENTAL_SNAPSHOT_2(0x4000002A, 2826, v1_18,"1.18_experimental-snapshot-2", VersionType.EXPERIMENTAL_SNAPSHOT),
     v1_18_EXPERIMENTAL_SNAPSHOT_1(0x40000029, 2825, v1_18,"1.18_experimental-snapshot-1", VersionType.EXPERIMENTAL_SNAPSHOT),
 
-    v1_17_1     (756,        2730,         "1.17.1"),
+    v1_17_1     (756,        2730, null, "1.17.1"),
     v1_17_1_RC2 (0x40000028, 2729, v1_17_1,"1.17.1-rc2"),
     v1_17_1_RC1 (0x40000027, 2728, v1_17_1,"1.17.1-rc1"),
     v1_17_1_PRE3(0x40000026, 2727, v1_17_1,"1.17.1-pre3"),
     v1_17_1_PRE2(0x40000025, 2726, v1_17_1,"1.17.1-pre2"),
     v1_17_1_PRE1(0x40000024, 2725, v1_17_1,"1.17.1-pre1"),
 
-    v1_17          (755,        2724,        "1.17"), // unreleased
+    v1_17          (755,        2724, null, "1.17"), // unreleased
     v1_17_RC2      (0x40000023, 2723, v1_17, "1.17-rc2"),
     v1_17_RC1      (0x40000022, 2722, v1_17, "1.17-rc1"),
     v1_17_PRE5     (0x40000021, 2721, v1_17, "1.17-pre5"),
@@ -64,18 +64,18 @@ public enum MCVersion {
     SNAPSHOT_20W46A(0x40000006, 2682, v1_17, "snapshot_20w46a"),
     SNAPSHOT_20W45A(0x40000005, 2681, v1_17, "snapshot_20w45a"),
 
-    v1_16_5    (754, 2586, "1.16.5"),
+    v1_16_5    (754, 2586, null, "1.16.5"),
     v1_16_5_RC1(0x4000000A, 2585, v1_16_5, "1.16.5-rc1"),
 
-    v1_16_4     (754,        2584, "1.16.4"),
-    v1_16_4_RC1 (0x40000003, 2583, "1.16.4-rc1"),
-    v1_16_4_PRE2(0x40000002, 2582, "1.16.4-pre2"),
-    v1_16_4_PRE1(0x40000001, 2581, "1.16.4-pre1"), // New network protocol scheme, with a high bit (bit 30) set for snapshots.
+    v1_16_4     (754,        2584, null, "1.16.4"),
+    v1_16_4_RC1 (0x40000003, 2583, v1_16_4, "1.16.4-rc1"),
+    v1_16_4_PRE2(0x40000002, 2582, v1_16_4, "1.16.4-pre2"),
+    v1_16_4_PRE1(0x40000001, 2581, v1_16_4, "1.16.4-pre1"), // New network protocol scheme, with a high bit (bit 30) set for snapshots.
 
-    v1_16_3    (753, 2580,          "1.16.3"),
+    v1_16_3    (753, 2580, null, "1.16.3"),
     v1_16_3_RC1(752, 2579, v1_16_3, "1.16.3-rc1"),
 
-    v1_16_2        (751, 2578,          "1.16.2"),
+    v1_16_2        (751, 2578, null, "1.16.2"),
     v1_16_2_RC2    (750, 2577, v1_16_2, "1.16.2-rc2"),
     v1_16_2_RC1    (749, 2576, v1_16_2, "1.16.2-rc1"),
     v1_16_2_PRE3   (748, 2575, v1_16_2, "1.16.2-pre3"),
@@ -86,9 +86,9 @@ public enum MCVersion {
     SNAPSHOT_20W28A(740, 2570, v1_16_2, "snapshot_20w28a"),
     SNAPSHOT_20W27A(738, 2569, v1_16_2, "snapshot_20w27a"),
 
-    v1_16_1(736, 2567, "1.16.1"),
+    v1_16_1(736, 2567, null, "1.16.1"),
 
-    v1_16          (735, 2566, "1.16"),
+    v1_16          (735, 2566, null, "1.16"),
     v1_16_RC1      (734, 2565, v1_16, "1.16-rc1"),
     v1_16_PRE8     (733, 2564, v1_16, "1.16-pre8"),
     v1_16_PRE7     (732, 2563, v1_16, "1.16-pre7"),
@@ -108,7 +108,9 @@ public enum MCVersion {
     SNAPSHOT_20W16A(712, 2526, v1_16, "snapshot_20w16a"),
     SNAPSHOT_20W15A(711, 2525, v1_16, "snapshot_20w15a"),
     SNAPSHOT_20W14A(710, 2524, v1_16, "snapshot_20w14a"),
+
     SNAPSHOT_20W14 (709, 2522, v1_16, "snapshot_20w14∞", VersionType.APRIL_FOOLS), // april fool
+
     SNAPSHOT_20W13B(709, 2521, v1_16, "snapshot_20w13b"),
     SNAPSHOT_20W13A(708, 2520, v1_16, "snapshot_20w13a"),
     SNAPSHOT_20W12A(707, 2515, v1_16, "snapshot_20w12a"),
@@ -119,12 +121,12 @@ public enum MCVersion {
     SNAPSHOT_20W07A(702, 2506, v1_16, "snapshot_20w07a"),
     SNAPSHOT_20W06A(701, 2504, v1_16, "snapshot_20w06a"),
 
-    v1_15_2(578, 2230, "1.15.2"),
+    v1_15_2(578, 2230, null, "1.15.2"),
     v1_15_2_PRE2(577, 2229, v1_15_2, "1.15.2-pre2"),
     v1_15_2_PRE1(576, 2228, v1_15_2, "1.15.2-pre1"),
-    v1_15_1(575, 2227, "1.15.1"),
+    v1_15_1(575, 2227, null, "1.15.1"),
     v1_15_1_PRE1(574, 2226, v1_15_1, "1.15.1-pre1"),
-    v1_15(573, 2225, "1.15"),
+    v1_15(573, 2225, null, "1.15"),
     v1_15_PRE7(572, 2224, v1_15, "1.15-pre7"),
     v1_15_PRE6(571, 2223, v1_15, "1.15-pre6"),
     v1_15_PRE5(570, 2222, v1_15, "1.15-pre5"),
@@ -148,7 +150,7 @@ public enum MCVersion {
     SNAPSHOT_19W35A(551, 2201, v1_15, "snapshot_19w35a"),
     SNAPSHOT_19W34A(550, 2200, v1_15, "snapshot_19w34a"),
 
-    v1_14_4(498, 1976, "1.14.4"),
+    v1_14_4(498, 1976, null, "1.14.4"),
     v1_14_4_PRE7(497, 1975, v1_14_4, "1.14.4-pre7"),
     v1_14_4_PRE6(496, 1974, v1_14_4, "1.14.4-pre6"),
     v1_14_4_PRE5(495, 1973, v1_14_4, "1.14.4-pre5"),
@@ -156,20 +158,20 @@ public enum MCVersion {
     v1_14_4_PRE3(493, 1971, v1_14_4, "1.14.4-pre3"),
     v1_14_4_PRE2(492, 1970, v1_14_4, "1.14.4-pre2"),
     v1_14_4_PRE1(491, 1969, v1_14_4, "1.14.4-pre1"),
-    v1_14_3(490, 1968, "1.14.3"),
+    v1_14_3(490, 1968, null, "1.14.3"),
     v1_14_3_PRE4(489, 1967, v1_14_3, "1.14.3-pre4"),
     v1_14_3_PRE3(488, 1966, v1_14_3, "1.14.3-pre3"),
     v1_14_3_PRE2(487, 1965, v1_14_3, "1.14.3-pre2"),
     v1_14_3_PRE1(486, 1964, v1_14_3, "1.14.3-pre1"),
-    v1_14_2(485, 1963, "1.14.2"),
+    v1_14_2(485, 1963, null, "1.14.2"),
     v1_14_2_PRE4(484, 1962, v1_14_2, "1.14.2-pre4"),
     v1_14_2_PRE3(483, 1960, v1_14_2, "1.14.2-pre3"),
     v1_14_2_PRE2(482, 1959, v1_14_2, "1.14.2-pre2"),
     v1_14_2_PRE1(481, 1958, v1_14_2, "1.14.2-pre1"),
-    v1_14_1(480, 1957, "1.14.1"),
+    v1_14_1(480, 1957, null, "1.14.1"),
     v1_14_1_PRE2(479, 1956, v1_14_1, "1.14.1-pre2"),
     v1_14_1_PRE1(478, 1955, v1_14_1, "1.14.1-pre1"),
-    v1_14(477, 1952, "1.14"),
+    v1_14(477, 1952, null, "1.14"),
     v1_14_PRE5(476, 1951, v1_14, "1.14-pre5"),
     v1_14_PRE4(475, 1950, v1_14, "1.14-pre4"),
     v1_14_PRE3(474, 1949, v1_14, "1.14-pre3"),
@@ -179,6 +181,7 @@ public enum MCVersion {
     SNAPSHOT_19W14A(470, 1944, v1_14, "snapshot_19w14a"),
 
     MC_3D_SHAREWARE_v1_34(1, 1943, v1_14, "3D Shareware v1.34", VersionType.APRIL_FOOLS), // april fools
+
     SNAPSHOT_19W13B(469, 1943, v1_14, "snapshot_19w13b"),
     SNAPSHOT_19W13A(468, 1942, v1_14, "snapshot_19w13a"),
     SNAPSHOT_19W12B(467, 1941, v1_14, "snapshot_19w12b"),
@@ -210,10 +213,10 @@ public enum MCVersion {
     SNAPSHOT_18W43B(441, 1902, v1_14, "snapshot_18w43b"),
     SNAPSHOT_18W43A(440, 1901, v1_14, "snapshot_18w43a"),
 
-    v1_13_2(404, 1631, "1.13.2"),
+    v1_13_2(404, 1631, null, "1.13.2"),
     v1_13_2_PRE2(403, 1630, v1_13_2, "1.13.2-pre2"),
     v1_13_2_PRE1(402, 1629, v1_13_2, "1.13.2-pre1"),
-    v1_13_1(401, 1628, "1.13.1"),
+    v1_13_1(401, 1628, null, "1.13.1"),
     v1_13_1_PRE2(400, 1627, v1_13_1, "1.13.1-pre2"),
     v1_13_1_PRE1(399, 1626, v1_13_1, "1.13.1-pre1"),
     SNAPSHOT_18W33A(398, 1625, v1_13_1, "snapshot_18w33a"),
@@ -221,7 +224,7 @@ public enum MCVersion {
     SNAPSHOT_18W31A(396, 1622, v1_13_1, "snapshot_18w31a"),
     SNAPSHOT_18W30B(395, 1621, v1_13_1, "snapshot_18w30b"),
     SNAPSHOT_18W30A(394, 1620, v1_13_1, "snapshot_18w30a"),
-    v1_13(393, 1519, "1.13"),
+    v1_13(393, 1519, null, "1.13"),
     v1_13_PRE10(392, 1518, v1_13, "1.13-pre10"),
     v1_13_PRE9(391, 1517, v1_13, "1.13-pre9"),
     v1_13_PRE8(390, 1516, v1_13, "1.13-pre8"),
@@ -275,13 +278,13 @@ public enum MCVersion {
     SNAPSHOT_17W43B(342, 1445, v1_13, "snapshot_17w43b"),
     SNAPSHOT_17W43A(341, 1444, v1_13, "snapshot_17w43a"),
 
-    v1_12_2(340, 1343, "1.12.2"),
+    v1_12_2(340, 1343, null, "1.12.2"),
     v1_12_2_PRE2(339, 1342, v1_12_2, "1.12.2-pre2"),
     v1_12_2_PRE1(339, 1341, v1_12_2, "1.12.2-pre1"),
-    v1_12_1(338, 1241, "1.12.1"),
+    v1_12_1(338, 1241, null, "1.12.1"),
     v1_12_1_PRE1(337, 1240, v1_12_1, "1.12.1-pre1"),
     SNAPSHOT_17W31A(336, 1239, v1_12_1, "snapshot_17w31a"),
-    v1_12(335, 1139, "1.12"),
+    v1_12(335, 1139, null, "1.12"),
     v1_12_PRE7(334, 1138, v1_12, "1.12-pre7"),
     v1_12_PRE6(333, 1137, v1_12, "1.12-pre6"),
     v1_12_PRE5(332, 1136, v1_12, "1.12-pre5"),
@@ -430,7 +433,7 @@ public enum MCVersion {
     v1_8_1_PRE2(47, v1_8_1, "1.8.1-pre2"),
     v1_8_1_PRE1(47, v1_8_1, "1.8.1-pre1"),
 
-    v1_8           (47,       "1.8"),
+    v1_8           (47, null, "1.8"),
     v1_8_PRE3      (46, v1_8, "1.8-pre3"),
     v1_8_PRE2      (45, v1_8, "1.8-pre2"),
     v1_8_PRE1      (44, v1_8, "1.8-pre1"),
@@ -486,20 +489,20 @@ public enum MCVersion {
     SNAPSHOT_14W02B(5,  v1_8,   "snapshot_14w02b"),
     SNAPSHOT_14W02A(5,  v1_8,   "snapshot_14w02a"),
 
-    v1_7_10        (5,         "1.7.10"),
+    v1_7_10        (5, null, "1.7.10"),
     v1_7_10_PRE4   (5, v1_7_10,"1.7.10-pre4"),
     v1_7_10_PRE3   (5, v1_7_10,"1.7.10-pre3"),
     v1_7_10_PRE2   (5, v1_7_10,"1.7.10-pre2"),
     v1_7_10_PRE1   (5, v1_7_10,"1.7.10-pre1"),
-    v1_7_9         (5,         "1.7.9"),
-    v1_7_8         (5,         "1.7.8"),
-    v1_7_7         (5,         "1.7.7"),
-    v1_7_6         (5,         "1.7.6"),
+    v1_7_9         (5, null, "1.7.9"),
+    v1_7_8         (5, null, "1.7.8"),
+    v1_7_7         (5, null, "1.7.7"),
+    v1_7_6         (5, null, "1.7.6"),
     v1_7_6_PRE2    (5, v1_7_6, "1.7.6-pre2"),
     v1_7_6_PRE1    (5, v1_7_6, "1.7.6-pre1"),
-    v1_7_5         (4,         "1.7.5"),
-    v1_7_4         (4,         "1.7.4"),
-    v1_7_3         (4,         "1.7.3"),
+    v1_7_5         (4, null, "1.7.5"),
+    v1_7_4         (4, null, "1.7.4"),
+    v1_7_3         (4, null, "1.7.3"),
     SNAPSHOT_13W49A(4, v1_7_3, "snapshot_13w49a"),
     SNAPSHOT_13W48B(4, v1_7_3, "snapshot_13w48b"),
     SNAPSHOT_13W48A(4, v1_7_3, "snapshot_13w48a"),
@@ -508,9 +511,9 @@ public enum MCVersion {
     SNAPSHOT_13W47C(4, v1_7_3, "snapshot_13w47c"),
     SNAPSHOT_13W47B(4, v1_7_3, "snapshot_13w47b"),
     SNAPSHOT_13W47A(4, v1_7_3, "snapshot_13w47a"),
-    v1_7_2         (4,         "1.7.2"),
-    v1_7_1         (3,         "1.7.1"),
-    v1_7           (3,         "1.7"),
+    v1_7_2         (4, null, "1.7.2"),
+    v1_7_1         (3, null, "1.7.1"),
+    v1_7           (3, null, "1.7"),
     SNAPSHOT_13W43A(2, v1_7,   "snapshot_13w43a"),
     SNAPSHOT_13W42B(1, v1_7,   "snapshot_13w42b"),
     SNAPSHOT_13W42A(1, v1_7,   "snapshot_13w42a"),
