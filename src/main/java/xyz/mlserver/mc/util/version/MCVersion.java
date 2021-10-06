@@ -787,7 +787,6 @@ public enum MCVersion {
     }
 
     private static final Map<Integer, List<MCVersion>> cachedProtocolVersions = new HashMap<>();
-    private static final Map<Integer, List<MCVersion>> cachedDataVersions = new HashMap<>();
 
     public static VersionType getFromMCVersionName(String name) {
         boolean releaseCandidate = name.toUpperCase().contains("RC");
