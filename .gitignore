@@ -1,0 +1,8 @@
+target/
+.idea/
+test/
+*.iml
+
+!mc/util/version/test/
+
+tool/VersionOpenTool.xlsx
