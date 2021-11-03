@@ -1,9 +1,12 @@
 package xyz.mlserver.mls.sponsor;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import xyz.mlserver.java.Log;
 import xyz.mlserver.java.sql.DataBase;
 import xyz.mlserver.mc.util.Color;
+import xyz.mlserver.mls.listener.ChangeSponsorColor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,6 +48,7 @@ public class SponsorColor {
                 if(rs.next()) {
                     rs.beforeFirst();
                     rs.next();
+//                    Log.debug(rs.getString("color"));
                     color = Color.getNameToColor(rs.getString("color"));
                 } else {
                     color = defaultColor;

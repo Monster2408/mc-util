@@ -1,7 +1,6 @@
 target/
 .idea/
 test/
-*.iml
 
 !mc/util/version/test/
 
