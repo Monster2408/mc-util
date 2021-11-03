@@ -5,7 +5,6 @@ import org.bukkit.ChatColor;
 
 import org.bukkit.plugin.Plugin;
 import xyz.mlserver.java.Log;
-import xyz.mlserver.java.sql.MySQLUtil;
 import xyz.mlserver.java.sql.DataBase;
 import xyz.mlserver.java.sql.mysql.MySQL;
 
@@ -23,43 +22,7 @@ import java.util.UUID;
 
 public class SponsorSQL {
 
-    public static MySQLUtil mySQLUtil;
-
     private static DataBase dataBase;
-
-    private static String host, database, username, password;
-    private static int port;
-
-    /**
-     * HighFunctionalityLib必須
-     * @return {1: "成功", 0: "HighFunctionalityLibがねえ...", -1: "失敗"}
-     */
-    public static int OpenConnection() {
-        Plugin highFLib = Bukkit.getPluginManager().getPlugin("HighFunctionalityLib");
-        if (highFLib == null) return -1;
-        if (mySQLUtil == null) {
-            if (host == null) host = highFLib.getConfig().getString("host", "localhost");
-            if (port < 0) port = highFLib.getConfig().getInt("host", 3306);
-            if (database == null) database = highFLib.getConfig().getString("database", "database");
-            if (username == null) username = highFLib.getConfig().getString("username", "username");
-            if (password == null) password = highFLib.getConfig().getString("password", "password");
-
-            mySQLUtil = new MySQLUtil(
-                    host,
-                    port,
-                    database,
-                    username,
-                    password
-            );
-        }
-        try {
-            mySQLUtil.openConnection();
-            return 1;
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
 
     /**
      *
