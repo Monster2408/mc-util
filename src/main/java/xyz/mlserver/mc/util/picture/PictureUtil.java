@@ -66,6 +66,14 @@ public class PictureUtil {
         return createPictureMessage(player, messages, false);
     }
 
+    public ImageMessage createPictureMessage(Player player, boolean textCenter) {
+        return createPictureMessage(player, null, textCenter);
+    }
+
+    public ImageMessage createPictureMessage(Player player) {
+        return createPictureMessage(player, null, false);
+    }
+
     private char getChar() {
         return ImageChar.BLOCK.getChar();
     }
