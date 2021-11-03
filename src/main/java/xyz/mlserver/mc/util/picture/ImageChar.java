@@ -1,4 +1,4 @@
-package xyz.mlserver.mc.util.text;
+package xyz.mlserver.mc.util.picture;
 
 public enum ImageChar {
     BLOCK('\u2588'),

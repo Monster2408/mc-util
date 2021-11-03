@@ -1,4 +1,4 @@
-package xyz.mlserver.mc.util.text;
+package xyz.mlserver.mc.util.picture;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
