@@ -82,10 +82,11 @@ public class PictureUtil {
         int imageDimensions = 8, count = 0;
         ImageMessage imageMessage = new ImageMessage(image, imageDimensions, getChar());
         String[] msg = new String[imageDimensions];
-
-        for (String message : messages) {
-            if (count > msg.length) break;
-            msg[count++] = Color.replaceColorCode(message);
+        if (messages != null) {
+            for (String message : messages) {
+                if (count > msg.length) break;
+                msg[count++] = Color.replaceColorCode(message);
+            }
         }
 
         while (count < imageDimensions) {
