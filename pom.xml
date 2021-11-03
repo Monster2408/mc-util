@@ -6,7 +6,7 @@
 
     <groupId>xyz.mlserver</groupId>
     <artifactId>repo.mlserver.xyz</artifactId>
-    <version>1.2.15-SNAPSHOT-006</version>
+    <version>1.2.15-SNAPSHOT-007</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
