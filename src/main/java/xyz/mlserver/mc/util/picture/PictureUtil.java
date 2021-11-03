@@ -18,13 +18,11 @@ import java.util.List;
 public class PictureUtil {
 
     private JavaPlugin plugin;
-    private boolean textCenter;
 
-    public PictureUtil(JavaPlugin plugin) { new PictureUtil(plugin, false); }
+    public PictureUtil(JavaPlugin plugin) { new PictureUtil(plugin); }
 
     public PictureUtil(JavaPlugin plugin, boolean textCenter) {
         this.plugin = plugin;
-        this.textCenter = textCenter;
     }
 
     private URL newURL(String player_uuid) {
@@ -56,19 +54,23 @@ public class PictureUtil {
         return null;
     }
 
-    public ImageMessage createPictureMessage(Player player, List<String> messages) {
+    public ImageMessage createPictureMessage(Player player, List<String> messages, boolean textCenter) {
         BufferedImage image = getImage(player);
 
         if (image == null) return null;
 
-        return getMessage(messages, image);
+        return getMessage(messages, image, textCenter);
+    }
+
+    public ImageMessage createPictureMessage(Player player, List<String> messages) {
+        return createPictureMessage(player, messages, false);
     }
 
     private char getChar() {
         return ImageChar.BLOCK.getChar();
     }
 
-    public ImageMessage getMessage(List<String> messages, BufferedImage image) {
+    public ImageMessage getMessage(List<String> messages, BufferedImage image, boolean textCenter) {
         int imageDimensions = 8, count = 0;
         ImageMessage imageMessage = new ImageMessage(image, imageDimensions, getChar());
         String[] msg = new String[imageDimensions];
@@ -86,6 +88,10 @@ public class PictureUtil {
             return imageMessage.appendCenteredText(msg);
 
         return imageMessage.appendText(msg);
+    }
+
+    public ImageMessage getMessage(List<String> messages, BufferedImage image) {
+        return getMessage(messages, image, false);
     }
 
     public void sendOutPictureMessage(ImageMessage picture_message) {
