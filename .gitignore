@@ -5,3 +5,5 @@ test/
 !mc/util/version/test/
 
 tool/VersionOpenTool.xlsx
+
+.imi
