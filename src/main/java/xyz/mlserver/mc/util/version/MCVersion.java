@@ -12,13 +12,41 @@ public enum MCVersion {
         https://minecraft.fandom.com/wiki/Protocol_version#Java_Edition
     */
 
-//    Java Edition 21w43a	0x4000002F	2844
-//    Java Edition 21w42a	0x4000002E	2840
-//    Java Edition 21w41a	0x4000002D	2839
-//    Java Edition 21w40a	0x4000002C	2838
+//    Java Edition 1.18.1 Release Candidate 1	0x4000003E	2862
+//    Java Edition 1.18.1 Pre-release 1	0x4000003D	2861
+//    Java Edition 1.18	757	2860
+//    Java Edition 1.18 Release Candidate 4	0x4000003C	2859
+//    Java Edition 1.18 Release Candidate 3	0x4000003B	2858
+//    Java Edition 1.18 Release Candidate 2	0x4000003A	2857
+//    Java Edition 1.18 Release Candidate 1	0x40000039	2856
+//    Java Edition 1.18 Pre-release 8	0x40000038	2855
+//    Java Edition 1.18 Pre-release 7	0x40000037	2854
+//    Java Edition 1.18 Pre-release 6	0x40000036	2853
+//    Java Edition 1.18 Pre-release 5	0x40000035	2851
+//    Java Edition 1.18 Pre-release 4	0x40000034	2850
+//    Java Edition 1.18 Pre-release 3	0x40000033	2849
+//    Java Edition 1.18 Pre-release 2	0x40000032	2848
+//    Java Edition 1.18 Pre-release 1	0x40000031	2847
+//    Java Edition 21w44a	0x40000030	2845
 
+    v1_18_1     (1, -1, "1.18.1", VersionType.DUMMY),
+    v1_18_1_RC1 (0x4000003E,2862,v1_18_1,"1.18.1-rc1",  VersionType.RELEASE_CANDIDATE),
+    v1_18_1_PRE1(0x4000003D,2861,v1_18_1,"1.18.1-pre1", VersionType.PRERELEASE),
 
-    v1_18(1, -1, "1.18", VersionType.RELEASE),
+    v1_18                        (757       ,2860,      "1.18",      VersionType.RELEASE),
+    v1_18_RC4                    (0x4000003C,2859,v1_18,"1.18-rc4",  VersionType.RELEASE_CANDIDATE),
+    v1_18_RC3                    (0x4000003B,2858,v1_18,"1.18-rc3",  VersionType.RELEASE_CANDIDATE),
+    v1_18_RC2                    (0x4000003A,2857,v1_18,"1.18-rc2",  VersionType.RELEASE_CANDIDATE),
+    v1_18_RC1                    (0x40000039,2856,v1_18,"1.18-rc1",  VersionType.RELEASE_CANDIDATE),
+    v1_18_PRE8                   (0x40000038,2855,v1_18,"1.18-pre8", VersionType.PRERELEASE),
+    v1_18_PRE7                   (0x40000037,2854,v1_18,"1.18-pre7", VersionType.PRERELEASE),
+    v1_18_PRE6                   (0x40000036,2853,v1_18,"1.18-pre6", VersionType.PRERELEASE),
+    v1_18_PRE5                   (0x40000035,2851,v1_18,"1.18-pre5", VersionType.PRERELEASE),
+    v1_18_PRE4                   (0x40000034,2850,v1_18,"1.18-pre4", VersionType.PRERELEASE),
+    v1_18_PRE3                   (0x40000033,2849,v1_18,"1.18-pre3", VersionType.PRERELEASE),
+    v1_18_PRE2                   (0x40000032,2848,v1_18,"1.18-pre2", VersionType.PRERELEASE),
+    v1_18_PRE1                   (0x40000031,2847,v1_18,"1.18-pre1", VersionType.PRERELEASE),
+    SNAPSHOT_21W44A              (0x40000030, 2845, v1_18,"snapshot_21w44a", VersionType.SNAPSHOT),
     SNAPSHOT_21W43A              (0x4000002F, 2844, v1_18,"snapshot_21w43a", VersionType.SNAPSHOT),
     SNAPSHOT_21W42A              (0x4000002E, 2840, v1_18,"snapshot_21w42a", VersionType.SNAPSHOT),
     SNAPSHOT_21W41A              (0x4000002D, 2839, v1_18,"snapshot_21w41a", VersionType.SNAPSHOT),
@@ -26,7 +54,6 @@ public enum MCVersion {
     SNAPSHOT_21W39A              (0x4000002B, 2836, v1_18,"snapshot_21w39a", VersionType.SNAPSHOT),
     SNAPSHOT_21W38A              (0x4000002A, 2835, v1_18,"snapshot_21w38a", VersionType.SNAPSHOT),
     SNAPSHOT_21W37A              (0x40000029, 2834, v1_18,"snapshot_21w37a", VersionType.SNAPSHOT),
-
     v1_18_EXPERIMENTAL_SNAPSHOT_7(0x4000002F, 2831, v1_18,"1.18_experimental-snapshot-7", VersionType.EXPERIMENTAL_SNAPSHOT),
     v1_18_EXPERIMENTAL_SNAPSHOT_6(0x4000002E, 2830, v1_18,"1.18_experimental-snapshot-6", VersionType.EXPERIMENTAL_SNAPSHOT),
     v1_18_EXPERIMENTAL_SNAPSHOT_5(0x4000002D, 2829, v1_18,"1.18_experimental-snapshot-5", VersionType.EXPERIMENTAL_SNAPSHOT),

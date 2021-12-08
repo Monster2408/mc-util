@@ -10,6 +10,10 @@ public class TimeUtil {
     private final SimpleDateFormat timestampFormat;
     private final SimpleDateFormat dateFormat;
 
+    public TimeUtil() {
+        this(null, null, null);
+    }
+
     public TimeUtil(String TimestampFormat, String DateFormat, String Timezone) {
         if (TimestampFormat == null) TimestampFormat = "EEE, d. MMM yyyy HH:mm:ss z";
         if (DateFormat == null) DateFormat = "yyyy-MM-dd";

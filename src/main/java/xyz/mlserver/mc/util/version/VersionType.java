@@ -8,6 +8,7 @@ public enum VersionType {
     APRIL_FOOLS,
     BETA,
     RELEASE,
-    UNKNOWN
+    UNKNOWN,
+    DUMMY
 }
 
