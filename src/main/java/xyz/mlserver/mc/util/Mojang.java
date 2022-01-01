@@ -37,7 +37,7 @@ public class Mojang {
         return UUID.fromString(uuid.toString());
     }
 
-    public String getName(String uuid) {
+    public static String getName(String uuid) {
         String url = "https://api.mojang.com/user/profiles/"+uuid.replace("-", "")+"/names";
         try {
             @SuppressWarnings("deprecation")
