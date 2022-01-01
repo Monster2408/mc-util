@@ -21,6 +21,11 @@ import java.util.UUID;
 
 public class Mojang {
 
+    /**
+     * Player UUID from Player Name
+     * @param playerName String
+     * @return UUID
+     */
     public static UUID getUUID(String playerName) {
         // URLを叩くとラグが発生するため
         for (Player p : Bukkit.getOnlinePlayers()) if (p.getName().equalsIgnoreCase(playerName)) return p.getUniqueId();
@@ -37,6 +42,11 @@ public class Mojang {
         return UUID.fromString(uuid.toString());
     }
 
+    /**
+     * Player Name from Player UUID
+     * @param uuid UUID
+     * @return String
+     */
     public static String getName(String uuid) {
         String url = "https://api.mojang.com/user/profiles/"+uuid.replace("-", "")+"/names";
         try {

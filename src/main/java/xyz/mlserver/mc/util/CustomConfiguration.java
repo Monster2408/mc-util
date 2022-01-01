@@ -19,8 +19,8 @@ public class CustomConfiguration {
     private final Plugin plugin;
 
     /**
-     * config.ymlを生成する
-     * @param plugin onEnableでthisつかって...
+     * Create config.yml
+     * @param plugin {@link Plugin}
      */
     public CustomConfiguration(Plugin plugin) {
         this(plugin, "config.yml");
@@ -28,8 +28,8 @@ public class CustomConfiguration {
 
     /**
      * 任意の名前.ymlを生成する
-     * @param plugin onEnableでthisつかって...
-     * @param fileName 任意の名前
+     * @param plugin {@link Plugin}
+     * @param fileName {@link String} 任意のファイル名前
      */
     public CustomConfiguration(Plugin plugin, String fileName) {
         this.plugin = plugin;
@@ -39,9 +39,10 @@ public class CustomConfiguration {
 
     /**
      * ワールドフォルダの中に任意の名前.ymlを生成する
-     * @param plugin onEnableでthisつかって...
-     * @param fileName 任意の名前
-     * @param worldName ワールド名
+     * @param plugin {@link Plugin}
+     * @param fileName {@link String} 任意のファイル名前
+     * @param worldName {@link String} ワールド名
+     * @deprecated ワールドフォルダーに保存すると不安定になる
      */
     public CustomConfiguration(Plugin plugin, String fileName, String worldName) {
         if (Bukkit.getWorld(worldName) == null) {
@@ -55,12 +56,18 @@ public class CustomConfiguration {
         }
     }
 
+    /**
+     * New Save Configuration File
+     */
     public void saveDefaultConfig() {
         if (!configFile.exists()) {
             plugin.saveResource(file, false);
         }
     }
 
+    /**
+     * Reload Configuration
+     */
     public void reloadConfig() {
         config = YamlConfiguration.loadConfiguration(configFile);
 
@@ -72,6 +79,10 @@ public class CustomConfiguration {
         config.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(defConfigStream, StandardCharsets.UTF_8)));
     }
 
+    /**
+     * Get Configuration File
+     * @return {@link FileConfiguration}
+     */
     public FileConfiguration getConfig() {
         if (config == null) {
             reloadConfig();
@@ -79,6 +90,9 @@ public class CustomConfiguration {
         return config;
     }
 
+    /**
+     * Save Configuration File
+     */
     public void saveConfig() {
         if (config == null) {
             return;
@@ -90,12 +104,20 @@ public class CustomConfiguration {
         }
     }
 
+    /**
+     * Clear Configuration File
+     */
     public void clear() {
         if (config == null) reloadConfig();
         for (String key : config.getConfigurationSection("").getKeys(false)) config.set(key, null);
         saveConfig();
     }
 
+    /**
+     * Save {@link Location} to {@link FileConfiguration}
+     * @param path {@link String}
+     * @param loc {@link Location}
+     */
     public void setLocation(String path, Location loc) {
         if (config == null) reloadConfig();
         try {
@@ -110,6 +132,11 @@ public class CustomConfiguration {
         }
     }
 
+    /**
+     * Get {@link Location} from {@link FileConfiguration}
+     * @param path {@link String}
+     * @return {@link Location}
+     */
     public Location getLocation(String path) {
         if (config == null) reloadConfig();
         if (config.getString(path + ".W") == null) return null;
