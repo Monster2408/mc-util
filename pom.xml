@@ -6,7 +6,7 @@
 
     <groupId>xyz.mlserver</groupId>
     <artifactId>repo.mlserver.xyz</artifactId>
-    <version>1.2.15-SNAPSHOT-016</version>
+    <version>1.2.15-SNAPSHOT-017</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -36,6 +36,10 @@
     <repositories>
         <repository>
             <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>spigotmc-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
