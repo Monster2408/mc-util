@@ -3,7 +3,6 @@ package xyz.mlserver.mc.util;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-
 import java.io.IOException;
 import java.net.URL;
 
