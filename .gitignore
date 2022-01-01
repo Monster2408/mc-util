@@ -7,3 +7,5 @@ test/
 tool/VersionOpenTool.xlsx
 
 .imi
+.exe
+.lnk
