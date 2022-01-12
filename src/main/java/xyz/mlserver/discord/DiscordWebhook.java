@@ -3,7 +3,7 @@ package xyz.mlserver.discord;
 import xyz.mlserver.java.Log;
 
 import javax.net.ssl.HttpsURLConnection;
-import java.awt.Color;
+import java.awt.*;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Array;

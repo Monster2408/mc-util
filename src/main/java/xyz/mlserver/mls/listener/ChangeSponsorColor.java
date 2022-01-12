@@ -3,7 +3,6 @@ package xyz.mlserver.mls.listener;
 import org.bukkit.ChatColor;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import xyz.mlserver.mc.util.Color;
 
 import java.util.UUID;
 

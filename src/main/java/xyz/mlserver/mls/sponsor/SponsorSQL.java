@@ -2,7 +2,6 @@ package xyz.mlserver.mls.sponsor;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-
 import org.bukkit.plugin.Plugin;
 import xyz.mlserver.java.Log;
 import xyz.mlserver.java.sql.DataBase;
