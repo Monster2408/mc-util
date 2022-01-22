@@ -37,27 +37,45 @@ public class BungeeCustomConfiguration {
         configFile = new File(plugin.getDataFolder(), file);
     }
 
+    /**
+     * コンフィグをプラグインフォルダに保存する
+     */
     public void saveDefaultConfig() {
         if (!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdir();
         if (!configFile.exists()) copyResource(plugin.getResourceAsStream(file), configFile);
     }
 
+    /**
+     * コンフィグを再読み込みする
+     */
     public void reloadConfig() {
         try { config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(configFile); }
         catch (IOException ex) { plugin.getLogger().log(Level.SEVERE, "Could not save config to " + configFile, ex); }
     }
 
+    /**
+     * コンフィグを取得する
+     * @return {@link Configuration}
+     */
     public Configuration getConfig() {
         if (config == null) reloadConfig();
         return config;
     }
 
+    /**
+     * コンフィグを上書き保存する。
+     */
     public void saveConfig() {
         if (config == null) return;
         try { ConfigurationProvider.getProvider(YamlConfiguration.class).save(config, configFile); }
         catch (IOException ex) { plugin.getLogger().log(Level.SEVERE, "Could not save config to " + configFile, ex); }
     }
 
+    /**
+     * リソースからコンフィグを読み込む
+     * @param is {@link InputStream}
+     * @param file {@link File}
+     */
     private void copyResource(InputStream is, File file) {
         try {
             OutputStream out = new FileOutputStream(file);
