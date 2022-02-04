@@ -20,6 +20,11 @@ public class CmdUtil {
     private final String temp_heder = ChatColor.YELLOW + "-------- " + ChatColor.WHITE + "HELP: page" + "%NOW-PAGE%/%MAX-PAGE%" + ChatColor.YELLOW + " --------";
     private final String temp_format = ChatColor.GOLD + "%CMD%: " + ChatColor.WHITE + "%DESCRIPTION%";
 
+    /**
+     * 引数はヘルプコマンドの表示形式
+     * @param format
+     * @param header
+     */
     public CmdUtil(String format, String header) {
         this.commandUtilHash = new HashMap<>();
         this.adminCommandUtilHash = new HashMap<>();

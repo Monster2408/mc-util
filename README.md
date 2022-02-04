@@ -4,6 +4,8 @@
 [![Twitter](https://badgen.net/twitter/follow/meoto2408?icon=twitter)](https://twitter.com/meoto2408)
 [![Discord](https://discord.com/api/guilds/556844677115150366/widget.png)](https://discord.mlserver.xyz)
 
+[Java Docs](https://docs.mlserver.jp/)
+
 ```xml
 <project>
     <repositories>
