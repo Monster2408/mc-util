@@ -22,69 +22,100 @@ public class CmdUtil {
 
     /**
      * 引数はヘルプコマンドの表示形式
-     * @param format
-     * @param header
+     * @param format コマンド部分のフォーマット | null → <code>/cmd: コマンド説明</code>
+     * @param header ヘッダ部分のフォーマット | null → <code>-------- HELP: page(1/3) --------</code>
      */
     public CmdUtil(String format, String header) {
         this.commandUtilHash = new HashMap<>();
         this.adminCommandUtilHash = new HashMap<>();
+        if (format == null) format = temp_format;
         this.format = format;
+        if (header == null) header = temp_heder;
         this.header = header;
     }
 
+    /**
+     * 引数はヘルプコマンドの表示形式
+     * @param format コマンド部分のフォーマット | null → <code>/cmd: コマンド説明</code>
+     */
     public CmdUtil(String format) {
-        this.commandUtilHash = new HashMap<>();
-        this.adminCommandUtilHash = new HashMap<>();
-        this.format = format;
-        this.header = temp_heder;
+        this(format, null);
     }
 
+    /**
+     * 引数はヘルプコマンドの表示形式
+     */
     public CmdUtil() {
-        this.commandUtilHash = new HashMap<>();
-        this.adminCommandUtilHash = new HashMap<>();
-        this.format = temp_format;
-        this.header = temp_heder;
+        this(null, null);
     }
 
+    /**
+     * コマンドの追加
+     * @param cmd コマンドの使い方 | <code>/cmd create</code>
+     * @param description コマンドの説明
+     * @return {@link CmdUtil}
+     */
     public CmdUtil add(String cmd, String description) {
         this.commandUtilHash.put(cmd, description);
         return this;
     }
 
+    /**
+     * 管理者専用のコマンドの追加。追加したコマンドはOPにしか閲覧不可。
+     * @param cmd コマンドの使い方 | <code>/cmd create</code>
+     * @param description コマンドの説明
+     * @return {@link CmdUtil}
+     */
     public CmdUtil addOP(String cmd, String description) {
         this.adminCommandUtilHash.put(cmd, description);
         return this;
     }
 
+    /**
+     * コマンドヘルプ表示形式を取得
+     * @return {@link String}
+     */
     public String getFormat() {
         return format;
     }
 
+    /**
+     * コマンドヘルプ表示形式を設定。Placeholderとして<code>%CMD%</code>(コマンド)と<code>%DESCRIPTION%</code>(コマンドの説明)が使用可能
+     * @param format Placeholderとして<code>%CMD%</code>(コマンド)と<code>%DESCRIPTION%</code>(コマンドの説明)が使用可能
+     */
     public void setFormat(String format) {
         this.format = format;
     }
 
+    /**
+     * コマンドヘルプヘッダ部分の表示形式を取得。
+     * @return {@link String}
+     */
     public String getHeader() {
         return header;
     }
 
+    /**
+     * コマンドヘルプヘッダ部分の表示形式を設定。Placeholderとして<code>%NOW-PAGE%</code>(表示中のページ)と<code>%MAX-PAGE%</code>(コマンドヘルプ最大ページ)が使用可能
+     * @param header Placeholderとして<code>%NOW-PAGE%</code>(表示中のページ)と<code>%MAX-PAGE%</code>(コマンドヘルプ最大ページ)が使用可能
+     */
     public void setHeader(String header) {
         this.header = header;
     }
 
-    public HashMap<String, String> getCommandUtilHash() {
+    private HashMap<String, String> getCommandUtilHash() {
         return commandUtilHash;
     }
 
-    public HashMap<String, String> getAdminCommandUtilHash() {
+    private HashMap<String, String> getAdminCommandUtilHash() {
         return adminCommandUtilHash;
     }
 
     /**
-     * send help of base
-     * @param player
-     * @param page
-     * @param advanced
+     * コマンドヘルプの送信
+     * @param player 送信先({@link Player})
+     * @param page 表示するページ、最大ページ以上であれば最大ページを表示
+     * @param advanced テキストクリックでコマンドを補完する機能のON/OFF
      */
     public void send(Player player, int page, boolean advanced) {
         if (player.isOp()) {
@@ -96,21 +127,37 @@ public class CmdUtil {
         }
     }
 
+    /**
+     * コマンドヘルプの送信
+     * @param sender 送信先({@link CommandSender})
+     * @param page 表示するページ、最大ページ以上であれば最大ページを表示
+     */
     public void send(CommandSender sender, int page) {
         if (sender instanceof Player) send(((Player)sender), page, false);
         else for (String text : getAdminHelpMsg(page)) sender.sendMessage(text);
     }
 
+    /**
+     * コマンドヘルプの送信
+     * @param player 送信先({@link Player})
+     * @param page 表示するページ、最大ページ以上であれば最大ページを表示
+     */
     public void send(Player player, int page) {
         send(player, page, false);
     }
 
+    /**
+     * コマンドヘルプの送信
+     * @param sender 送信先({@link CommandSender})
+     * @param page 表示するページ、最大ページ以上であれば最大ページを表示
+     * @param advanced テキストクリックでコマンドを補完する機能のON/OFF
+     */
     public void send(CommandSender sender, int page, boolean advanced) {
         if (sender instanceof Player) send(((Player)sender), page, advanced);
         else send(sender, page);
     }
 
-    public List<String> getHelpMsg(int page) {
+    private List<String> getHelpMsg(int page) {
         List<String> list = new ArrayList<>();
         String text;
         HashMap<String, String> hash = this.getCommandUtilHash();
@@ -148,7 +195,7 @@ public class CmdUtil {
         return _list;
     }
 
-    public List<String> getAdminHelpMsg(int page) {
+    private List<String> getAdminHelpMsg(int page) {
         List<String> list = new ArrayList<>();
         String text;
         HashMap<String, String> hash = this.getCommandUtilHash();
@@ -193,7 +240,7 @@ public class CmdUtil {
         return _list;
     }
 
-    public List<TextComponent> getAdvanceHelpMsg(int page) {
+    private List<TextComponent> getAdvanceHelpMsg(int page) {
         List<TextComponent> list = new ArrayList<>();
         TextComponent component;
         String text;
@@ -235,7 +282,7 @@ public class CmdUtil {
         return _list;
     }
 
-    public List<TextComponent> getAdminAdvanceHelpMsg(int page) {
+    private List<TextComponent> getAdminAdvanceHelpMsg(int page) {
         List<TextComponent> list = new ArrayList<>();
         TextComponent component;
         String text;
