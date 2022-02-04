@@ -10,13 +10,16 @@ public enum MCVersion {
     /*
         参考サイト
         https://minecraft.fandom.com/wiki/Protocol_version#Java_Edition
+
+        ダミーバージョン例
+        v1_18_2(1, -1, "1.18.2", VersionType.DUMMY)
     */
 
-//    Java Edition 1.18.1	757	2865
-//    Java Edition 1.18.1 Release Candidate 3	0x40000040	2864
-//    Java Edition 1.18.1 Release Candidate 2	0x4000003F	2863
+    v1_18_2        (1, -1, "1.18.2", VersionType.DUMMY),
+    SNAPSHOT_22W05A(0x40000042, 2967, "snapshot_22w05a", VersionType.SNAPSHOT),
+    SNAPSHOT_22W03A(0x40000041, 2966, "snapshot_22w03a", VersionType.SNAPSHOT),
 
-    v1_18_1     (1, 757, "1.18.1", VersionType.RELEASE),
+    v1_18_1     (757,       2865,        "1.18.1",      VersionType.RELEASE),
     v1_18_1_RC3 (0x40000040,2864,v1_18_1,"1.18.1-rc3",  VersionType.RELEASE_CANDIDATE),
     v1_18_1_RC2 (0x4000003F,2863,v1_18_1,"1.18.1-rc2",  VersionType.RELEASE_CANDIDATE),
     v1_18_1_RC1 (0x4000003E,2862,v1_18_1,"1.18.1-rc1",  VersionType.RELEASE_CANDIDATE),
