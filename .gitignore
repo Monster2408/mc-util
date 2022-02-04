@@ -6,6 +6,6 @@ test/
 
 tool/VersionOpenTool.xlsx
 
-.imi
-.exe
+*.imi
+*.exe
 git-bash.*
