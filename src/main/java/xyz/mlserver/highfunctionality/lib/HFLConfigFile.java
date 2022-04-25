@@ -78,4 +78,11 @@ public class HFLConfigFile {
     public String getUser() {
         return user;
     }
+
+    /**
+     * データベース接続不可時などに実行すればいい
+     */
+    public void disable() {
+        enabled = false;
+    }
 }
