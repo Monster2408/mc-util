@@ -24,6 +24,7 @@ public class EventSQL {
     }
 
     public int getWin(String uuid) {
+        if (winData.get(uuid) != null) return winData.get(uuid);
         String sql = "select * from " + table_name + " where uuid=?";
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
@@ -45,8 +46,8 @@ public class EventSQL {
     }
 
     public void addWin(String uuid, int i) {
-        gameData.putIfAbsent(uuid, 0);
-        winData.putIfAbsent(uuid, 0);
+        getGame(uuid);
+        getWin(uuid);
         winData.put(uuid, winData.get(uuid) + i);
 
         String sql = "insert into " + table_name + " (uuid, game, win) "
@@ -71,8 +72,8 @@ public class EventSQL {
 
 
     public void addWin(String table_name, String uuid, int i) {
-        gameData.putIfAbsent(uuid, 0);
-        winData.putIfAbsent(uuid, 0);
+        getGame(uuid);
+        getWin(uuid);
         winData.put(uuid, winData.get(uuid) + i);
 
         String sql = "insert into " + table_name + " (uuid, game, win) "
@@ -99,6 +100,7 @@ public class EventSQL {
     public void addWin(UUID uuid) { addWin(uuid.toString(), 1); }
 
     public int getGame(String uuid) {
+        if (gameData.get(uuid) != null) return gameData.get(uuid);
         String sql = "select * from " + table_name + " where uuid=?";
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
@@ -120,8 +122,8 @@ public class EventSQL {
     }
 
     public void addGame(String uuid, int i) {
-        gameData.putIfAbsent(uuid, 0);
-        winData.putIfAbsent(uuid, 0);
+        getGame(uuid);
+        getWin(uuid);
         gameData.put(uuid, gameData.get(uuid) + i);
 
         String sql = "insert into " + table_name + " (uuid, game, win) "
