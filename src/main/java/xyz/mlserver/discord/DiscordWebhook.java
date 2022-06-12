@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Class used to execute Discord Webhooks with low effort
+ * DiscordWebhookを送信するためのClass
  */
 public class DiscordWebhook {
 

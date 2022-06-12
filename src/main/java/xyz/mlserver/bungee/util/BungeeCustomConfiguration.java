@@ -12,6 +12,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.logging.Level;
 
+/**
+ * BungeeCord専用PluginでConfigファイルを活用するClass
+ */
 public class BungeeCustomConfiguration {
     private Configuration config = null;
     private final File configFile;
