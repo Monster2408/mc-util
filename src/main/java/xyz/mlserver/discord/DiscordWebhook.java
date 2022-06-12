@@ -167,6 +167,9 @@ public class DiscordWebhook {
         connection.disconnect();
     }
 
+    /**
+     * Embedを作成するためのClass
+     */
     public static class EmbedObject {
         private String title;
         private String description;
