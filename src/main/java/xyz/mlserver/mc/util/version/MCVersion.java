@@ -12,8 +12,19 @@ public enum MCVersion {
         https://minecraft.fandom.com/wiki/Protocol_version#Java_Edition
 
         ダミーバージョン例
-        v1_18_2(1, -1, "1.18.2", VersionType.DUMMY)
+        v1_18_2(-1, -1, "1.18.2", VersionType.DUMMY)
     */
+    v1_19_1        (-1        , -1,            "v1_19_1",        VersionType.DUMMY),
+    v1_19_1_RC3    (0x40000065, 3116, v1_19_1, "v1_19_rc3",      VersionType.RELEASE_CANDIDATE),
+    v1_19_1_RC2    (0x40000064, 3115, v1_19_1, "v1_19_rc2",      VersionType.RELEASE_CANDIDATE),
+    v1_19_1_PRE6   (0x40000063, 3114, v1_19_1, "v1_19_pre6",     VersionType.PRERELEASE),
+    v1_19_1_PRE5   (0x40000062, 3113, v1_19_1, "v1_19_pre5",     VersionType.PRERELEASE),
+    v1_19_1_PRE4   (0x40000061, 3112, v1_19_1, "v1_19_pre4",     VersionType.PRERELEASE),
+    v1_19_1_PRE3   (0x40000060, 3111, v1_19_1, "v1_19_pre3",     VersionType.PRERELEASE),
+    v1_19_1_PRE2   (0x4000005F, 3110, v1_19_1, "v1_19_pre2",     VersionType.PRERELEASE),
+    v1_19_1_RC1    (0x4000005E, 3109, v1_19_1, "v1_19_rc1",      VersionType.RELEASE_CANDIDATE),
+    v1_19_1_PRE1   (0x4000005D, 3107, v1_19_1, "v1_19_1_pre1",   VersionType.PRERELEASE),
+    SNAPSHOT_22W24A(0x4000005C, 3106, v1_19_1, "snapshot_22w24a",VersionType.SNAPSHOT),
 
     v1_19                        (759       , 3105,        "v1_19",                        VersionType.RELEASE),
     v1_19_RC2                    (0x4000005B, 3104, v1_19, "v1_19_rc2",                    VersionType.RELEASE_CANDIDATE),
