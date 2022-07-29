@@ -27,7 +27,7 @@ public class HFLConfigFile {
         user = plugin.getConfig().getString("mysql.user", null);
         password = plugin.getConfig().getString("mysql.password", null);
 
-        if (!(host != null && database != null && user != null && password != null)) return;
+        if (!(host != null && database != null && user != null && password != null) || !plugin.getConfig().getBoolean("mysql.enable", false)) return;
         enabled = true;
     }
 
