@@ -11,17 +11,51 @@ import java.util.UUID;
 
 public class LanguageSQL {
 
-    public static void putLang(DataBase dataBase, Player player, Language lang) {
-        putLang(dataBase, player.getUniqueId().toString(), lang);
+    private final DataBase dataBase;
+
+    /**
+     * 言語システムのホニャララ
+     * @param dataBase 言語データを格納するデータベース
+     */
+    LanguageSQL(DataBase dataBase, int interval) {
+        this.dataBase = dataBase;
     }
 
-    public static void putLang(DataBase dataBase, UUID uuid, Language lang) {
-        putLang(dataBase, uuid.toString(), lang);
+    public DataBase getDataBase() {
+        return dataBase;
     }
 
-    public static void putLang(DataBase dataBase, String uuid, Language lang) {
-        LanguageUtil.getPlayerLang().put(uuid, lang);
+    /**
+     * Playerを元に設定言語を取得する
+     * @param player 取得元の{@Player}
+     * @return {@Language}
+     */
+    public Language getLanguage(Player player) { return getLanguage(player.getUniqueId()); }
 
+    public Language getLanguage(UUID uuid) { return getLanguage(uuid.toString()); }
+
+    public Language getLanguage(String uuid) {
+        createTable();
+        String sql = "SELECT * FROM languages where uuid=?;";
+        Language language;
+        try(Connection con = dataBase.getDataSource().getConnection();
+            PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.setString(1, uuid);
+            ResultSet result = prestat.executeQuery();
+            if (result.next()) language = Language.fromId(result.getString(2));
+            else {
+                setLanguage(uuid, Language.ENGLISH);
+                language = Language.ENGLISH;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            language = Language.ENGLISH;
+        }
+        return language;
+    }
+
+    public void setLanguage(String uuid, Language language) {
+        createTable();
         String sql = "insert into languages (uuid, lang) "
                 + "VALUES (?, ?) "
                 +"ON DUPLICATE KEY UPDATE "
@@ -30,31 +64,24 @@ public class LanguageSQL {
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
             prestat.setString(1, uuid);
-            prestat.setString(2, lang.getId());
+            prestat.setString(2, language.getId());
             prestat.setString(3, uuid);
-            prestat.setString(4, lang.getId());
+            prestat.setString(4, language.getId());
             prestat.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static void load(DataBase dataBase, UUID uuid) {
-        load(dataBase, uuid.toString());
-    }
-
-    public static void load(DataBase dataBase, Player player) {
-        load(dataBase, player.getUniqueId().toString());
-    }
-
-    public static void load(DataBase dataBase, String uuid) {
-        String sql = "SELECT * FROM languages where uuid=?;";
+    private void createTable() {
+        String sql = "create table if not exists languages (" +
+                "uuid text NOT NULL PRIMARY KEY," +
+                "lang text default '" + Language.JAPANESE.getId() + "' not null" +
+                ");"
+                ;
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
-            prestat.setString(1, uuid);
-            ResultSet result = prestat.executeQuery();
-            if (result.next()) LanguageUtil.getPlayerLang().put(uuid, Language.fromId(result.getString(2)));
-            else LanguageUtil.getPlayerLang().put(uuid, Language.ENGLISH);
+            prestat.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }

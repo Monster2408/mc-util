@@ -8,7 +8,8 @@ public enum Language {
             return name().toUpperCase();
         }
     };
-    private String name, id;
+    private final String name;
+    private String id;
     Language(String name, String id) {
         this.name = name;
         this.id = id;
