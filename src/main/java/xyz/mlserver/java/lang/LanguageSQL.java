@@ -17,7 +17,7 @@ public class LanguageSQL {
      * 言語システムのホニャララ
      * @param dataBase 言語データを格納するデータベース
      */
-    LanguageSQL(DataBase dataBase, int interval) {
+    public LanguageSQL(DataBase dataBase) {
         this.dataBase = dataBase;
     }
 
@@ -27,8 +27,8 @@ public class LanguageSQL {
 
     /**
      * Playerを元に設定言語を取得する
-     * @param player 取得元の{@Player}
-     * @return {@Language}
+     * @param player 取得元の{@link Player}
+     * @return {@link Language}
      */
     public Language getLanguage(Player player) { return getLanguage(player.getUniqueId()); }
 
