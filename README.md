@@ -1,8 +1,10 @@
 # Minecraft用
 
 [![](https://jitpack.io/v/xyz.mlserver/repo.mlserver.xyz.svg)](https://jitpack.io/#xyz.mlserver/repo.mlserver.xyz)
-[![Twitter](https://badgen.net/twitter/follow/meoto2408?icon=twitter)](https://twitter.com/meoto2408)
+[![Twitter](https://badgen.net/twitter/follow/monster_2408?icon=twitter)](https://twitter.com/monster_2408)
 [![Discord](https://discord.com/api/guilds/556844677115150366/widget.png)](https://discord.mlserver.xyz)
+
+[Java Docs](https://docs.mlserver.jp/)
 
 ```xml
 <project>

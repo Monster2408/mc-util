@@ -1,11 +1,10 @@
 package xyz.mlserver.java.sql;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.bukkit.plugin.Plugin;
 import xyz.mlserver.java.sql.db.AdvanceDataBase;
 import xyz.mlserver.java.sql.db.DataBaseUtil;
 import xyz.mlserver.java.sql.mysql.MySQL;
-
-import org.bukkit.plugin.Plugin;
 import xyz.mlserver.java.sql.sqlite.SQLite;
 
 public class DataBase {

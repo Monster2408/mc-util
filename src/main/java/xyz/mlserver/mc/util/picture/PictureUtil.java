@@ -1,18 +1,14 @@
 package xyz.mlserver.mc.util.picture;
 
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 import xyz.mlserver.java.Log;
 import xyz.mlserver.mc.util.Color;
-import xyz.mlserver.mc.util.picture.ImageChar;
-import xyz.mlserver.mc.util.picture.ImageMessage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class PictureUtil {

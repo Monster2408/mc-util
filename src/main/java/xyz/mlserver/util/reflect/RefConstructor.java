@@ -5,7 +5,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import xyz.mlserver.util.SneakyThrow;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Member;
 
 public class RefConstructor<T> extends RefExecutable implements RefModifierEditor<RefConstructor<T>, Constructor<T>> {
     @NotNull
