@@ -10,13 +10,57 @@ public enum MCVersion {
     /*
         参考サイト
         https://minecraft.fandom.com/wiki/Protocol_version#Java_Edition
+
+        ダミーバージョン例
+        v1_18_2(-1, -1, "1.18.2", VersionType.DUMMY)
     */
+    v1_19_2    (760,        3120,            "v1_19_2",        VersionType.RELEASE),
+    v1_19_2_RC2(0x40000067, 3119, v1_19_2, "v1_19_2_rc2",      VersionType.RELEASE_CANDIDATE),
+    v1_19_2_RC1(0x40000066, 3118, v1_19_2, "v1_19_2_rc1",      VersionType.RELEASE_CANDIDATE),
 
-//    Java Edition 1.18.1	757	2865
-//    Java Edition 1.18.1 Release Candidate 3	0x40000040	2864
-//    Java Edition 1.18.1 Release Candidate 2	0x4000003F	2863
+    v1_19_1        (760,        3117,            "v1_19_1",        VersionType.RELEASE),
+    v1_19_1_RC3    (0x40000065, 3116, v1_19_1, "v1_19_1_rc3",      VersionType.RELEASE_CANDIDATE),
+    v1_19_1_RC2    (0x40000064, 3115, v1_19_1, "v1_19_1_rc2",      VersionType.RELEASE_CANDIDATE),
+    v1_19_1_PRE6   (0x40000063, 3114, v1_19_1, "v1_19_1_pre6",     VersionType.PRERELEASE),
+    v1_19_1_PRE5   (0x40000062, 3113, v1_19_1, "v1_19_1_pre5",     VersionType.PRERELEASE),
+    v1_19_1_PRE4   (0x40000061, 3112, v1_19_1, "v1_19_1_pre4",     VersionType.PRERELEASE),
+    v1_19_1_PRE3   (0x40000060, 3111, v1_19_1, "v1_19_1_pre3",     VersionType.PRERELEASE),
+    v1_19_1_PRE2   (0x4000005F, 3110, v1_19_1, "v1_19_1_pre2",     VersionType.PRERELEASE),
+    v1_19_1_RC1    (0x4000005E, 3109, v1_19_1, "v1_19_1_rc1",      VersionType.RELEASE_CANDIDATE),
+    v1_19_1_PRE1   (0x4000005D, 3107, v1_19_1, "v1_19_1_pre1",   VersionType.PRERELEASE),
+    SNAPSHOT_22W24A(0x4000005C, 3106, v1_19_1, "snapshot_22w24a",VersionType.SNAPSHOT),
 
-    v1_18_1     (1, 757, "1.18.1", VersionType.RELEASE),
+    v1_19                        (759       , 3105,        "v1_19",                        VersionType.RELEASE),
+    v1_19_RC2                    (0x4000005B, 3104, v1_19, "v1_19_rc2",                    VersionType.RELEASE_CANDIDATE),
+    v1_19_RC1                    (0x4000005A, 3103, v1_19, "v1_19_rc1",                    VersionType.RELEASE_CANDIDATE),
+    v1_19_PRE5                   (0x40000059, 3102, v1_19, "v1_19_pre5",                   VersionType.PRERELEASE),
+    v1_19_PRE4                   (0x40000058, 3101, v1_19, "v1_19_pre4",                   VersionType.PRERELEASE),
+    v1_19_PRE3                   (0x40000057, 3100, v1_19, "v1_19_pre3",                   VersionType.PRERELEASE),
+    v1_19_PRE2                   (0x40000056, 3099, v1_19, "v1_19_pre2",                   VersionType.PRERELEASE),
+    v1_19_PRE1                   (0x40000055, 3098, v1_19, "v1_19_pre1",                   VersionType.PRERELEASE),
+    SNAPSHOT_22W19A              (0x40000054, 3096, v1_19, "snapshot_22w19a",              VersionType.SNAPSHOT),
+    SNAPSHOT_22W18A              (0x40000053, 3095, v1_19, "snapshot_22w18a",              VersionType.SNAPSHOT),
+    SNAPSHOT_22W17A              (0x40000052, 3093, v1_19, "snapshot_22w17a",              VersionType.SNAPSHOT),
+    SNAPSHOT_22W16B              (0x40000051, 3092, v1_19, "snapshot_22w16b",              VersionType.SNAPSHOT),
+    SNAPSHOT_22W16A              (0x40000050, 3091, v1_19, "snapshot_22w16a",              VersionType.SNAPSHOT),
+    SNAPSHOT_22W15A              (0x4000004F, 3089, v1_19, "snapshot_22w15a",              VersionType.SNAPSHOT),
+    SNAPSHOT_22W14A              (0x4000004E, 3088, v1_19, "snapshot_22w14a",              VersionType.SNAPSHOT),
+    SNAPSHOT_22W13A              (0x4000004C, 3085, v1_19, "snapshot_22w13a",              VersionType.SNAPSHOT),
+    SNAPSHOT_22W12A              (0x4000004B, 3082, v1_19, "snapshot_22w12a",              VersionType.SNAPSHOT),
+    SNAPSHOT_22W11A              (0x4000004A, 3080, v1_19, "snapshot_22w11a",              VersionType.SNAPSHOT),
+    v1_19_EXPERIMENTAL_SNAPSHOT_1(0x40000045, 3066, v1_19, "1.19_experimental-snapshot-1", VersionType.EXPERIMENTAL_SNAPSHOT),
+
+    v1_18_2        (758, 2975, "1.18.2", VersionType.RELEASE),
+    v1_18_2_RC1 (0x40000049,2874,v1_18_2,"1.18.2-rc1",  VersionType.RELEASE_CANDIDATE),
+    v1_18_2_PRE3(0x40000048, 2973,v1_18_2, "1.18.2-pre3", VersionType.PRERELEASE),
+    v1_18_2_PRE2(0x40000047, 2972,v1_18_2, "1.18.2-pre2", VersionType.PRERELEASE),
+    v1_18_2_PRE1(0x40000046, 2971,v1_18_2, "1.18.2-pre1", VersionType.PRERELEASE),
+    SNAPSHOT_22W07A(0x40000044, 2969,v1_18_2, "snapshot_22w07a", VersionType.SNAPSHOT),
+    SNAPSHOT_22W06A(0x40000043, 2968,v1_18_2, "snapshot_22w06a", VersionType.SNAPSHOT),
+    SNAPSHOT_22W05A(0x40000042, 2967,v1_18_2, "snapshot_22w05a", VersionType.SNAPSHOT),
+    SNAPSHOT_22W03A(0x40000041, 2966,v1_18_2, "snapshot_22w03a", VersionType.SNAPSHOT),
+
+    v1_18_1     (757,       2865,        "1.18.1",      VersionType.RELEASE),
     v1_18_1_RC3 (0x40000040,2864,v1_18_1,"1.18.1-rc3",  VersionType.RELEASE_CANDIDATE),
     v1_18_1_RC2 (0x4000003F,2863,v1_18_1,"1.18.1-rc2",  VersionType.RELEASE_CANDIDATE),
     v1_18_1_RC1 (0x4000003E,2862,v1_18_1,"1.18.1-rc1",  VersionType.RELEASE_CANDIDATE),
