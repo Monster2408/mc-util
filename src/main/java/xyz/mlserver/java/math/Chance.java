@@ -9,7 +9,6 @@ public class Chance {
         if (per >= 100) return true;
         Random random = new Random();
         int next = random.nextInt(max);
-//        System.out.println("next: "+next);
         return per >= next;
     }
 
