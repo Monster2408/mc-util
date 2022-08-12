@@ -225,6 +225,25 @@ public class EventSQL {
         return getGame(event, player.getUniqueId());
     }
 
+    public HashMap<Integer, String> getRanking(MLSEvent event) {
+        createTable(event);
+
+        String table_name = event.getDatabase();
+        HashMap<Integer, String> map = new HashMap<>();
+        int i = 1;
+        String sql = "SELECT * FROM " + table_name + " order by win desc;";
+        try(Connection con = dataBase.getDataSource().getConnection();
+            PreparedStatement prestat = con.prepareStatement(sql)) {
+            ResultSet result = prestat.executeQuery();
+            while(result.next()) {
+                if (i >= 10) break;
+                map.put(i, result.getString(1));
+                i++;
+            }
+        } catch (Exception ignored) { }
+        return map;
+    }
+
     private void createTable(MLSEvent event) {
         String sql = "create table if not exists " + event.getDatabase() + " (" +
                 "uuid text NOT NULL PRIMARY KEY," +
