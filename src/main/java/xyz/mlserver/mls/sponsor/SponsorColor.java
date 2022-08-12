@@ -1,9 +1,11 @@
 package xyz.mlserver.mls.sponsor;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import xyz.mlserver.java.sql.DataBase;
 import xyz.mlserver.mc.util.Color;
+import xyz.mlserver.mls.listener.ChangeSponsorColor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +15,15 @@ import java.util.UUID;
 
 public class SponsorColor {
 
-    public static void set(DataBase dataBase, String uuid, ChatColor color) {
+    private final DataBase dataBase;
+
+    public SponsorColor(DataBase dataBase) {
+        this.dataBase = dataBase;
+    }
+
+    public void set(String uuid, ChatColor color) {
+        createTable();
+
         String sql = "insert into sponsor_color (uuid, color) "
                 + "VALUES (?, ?) "
                 + "ON DUPLICATE KEY UPDATE "
@@ -31,10 +41,12 @@ public class SponsorColor {
         }
     }
 
-    public static void set(DataBase dataBase, UUID uuid, ChatColor color) { set(dataBase, uuid.toString(), color);}
-    public static void set(DataBase dataBase, Player player, ChatColor color) { set(dataBase, player.getUniqueId().toString(), color);}
+    public void set(UUID uuid, ChatColor color) { set(uuid.toString(), color);}
+    public void set(Player player, ChatColor color) { set(player.getUniqueId().toString(), color);}
 
-    public static ChatColor load(DataBase dataBase, String uuid, ChatColor defaultColor) {
+    public ChatColor load(String uuid, ChatColor defaultColor) {
+        createTable();
+
         String sql = "select * from sponsor_color where uuid=?;";
         ChatColor color;
         try(Connection con = dataBase.getDataSource().getConnection();
@@ -45,7 +57,7 @@ public class SponsorColor {
                 if(rs.next()) {
                     rs.beforeFirst();
                     rs.next();
-//                    Log.debug(rs.getString("color"));
+                    // Log.debug(rs.getString("color"));
                     color = Color.getNameToColor(rs.getString("color"));
                 } else {
                     color = defaultColor;
@@ -59,10 +71,23 @@ public class SponsorColor {
         return color;
     }
 
-    public static ChatColor load(DataBase dataBase, UUID uuid, ChatColor defaultColor) { return load(dataBase, uuid.toString(), defaultColor); }
+    public ChatColor load(UUID uuid, ChatColor defaultColor) { return load(uuid.toString(), defaultColor); }
 
-    public static ChatColor load(DataBase dataBase, String uuid) { return load(dataBase, uuid, null); }
+    public ChatColor load(String uuid) { return load(uuid, null); }
 
-    public static ChatColor load(DataBase dataBase, UUID uuid) { return load(dataBase, uuid.toString(), null); }
+    public ChatColor load(UUID uuid) { return load(uuid.toString(), null); }
+
+    private void createTable() {
+        String sql = "create table if not exists sponsor (" +
+                "uuid text NOT NULL PRIMARY KEY," +
+                "color text" +
+                ");";
+        try(Connection con = dataBase.getDataSource().getConnection();
+            PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

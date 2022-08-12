@@ -54,6 +54,10 @@ public class LanguageSQL {
         return language;
     }
 
+    public void setLanguage(Player player, Language language) { this.setLanguage(player.getUniqueId(), language); }
+
+    public void setLanguage(UUID uuid, Language language) { this.setLanguage(uuid.toString(), language); }
+
     public void setLanguage(String uuid, Language language) {
         createTable();
         String sql = "insert into languages (uuid, lang) "
