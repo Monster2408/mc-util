@@ -174,7 +174,7 @@ public class SponsorSQL {
 
     private void createTable() {
         String sql = "create table if not exists sponsor (" +
-                "uuid text NOT NULL PRIMARY KEY," +
+                "uuid varchar(36) NOT NULL PRIMARY KEY," +
                 "dt date" +
                 ");";
         try(Connection con = dataBase.getDataSource().getConnection();

@@ -72,15 +72,44 @@ public class SponsorColor {
     }
 
     public ChatColor load(UUID uuid, ChatColor defaultColor) { return load(uuid.toString(), defaultColor); }
-
     public ChatColor load(String uuid) { return load(uuid, null); }
-
     public ChatColor load(UUID uuid) { return load(uuid.toString(), null); }
+
+    public ChatColor get(String uuid, ChatColor defaultColor) {
+        createTable();
+
+        String sql = "select * from sponsor_color where uuid=?;";
+        ChatColor color;
+        try(Connection con = dataBase.getDataSource().getConnection();
+            PreparedStatement prestat = con.prepareStatement(sql)) {
+            prestat.setString(1, uuid);
+            ResultSet rs = prestat.executeQuery();
+            try {
+                if(rs.next()) {
+                    rs.beforeFirst();
+                    rs.next();
+                    // Log.debug(rs.getString("color"));
+                    color = Color.getNameToColor(rs.getString("color"));
+                } else {
+                    color = defaultColor;
+                }
+            } catch (Exception e) {
+                color = defaultColor;
+            }
+        } catch (SQLException e) {
+            color = defaultColor;
+        }
+        return color;
+    }
+
+    public ChatColor get(UUID uuid, ChatColor defaultColor) { return get(uuid.toString(), defaultColor); }
+    public ChatColor get(String uuid) { return get(uuid, null); }
+    public ChatColor get(UUID uuid) { return get(uuid.toString(), null); }
 
     private void createTable() {
         String sql = "create table if not exists sponsor (" +
-                "uuid text NOT NULL PRIMARY KEY," +
-                "color text" +
+                "uuid varchar(36) NOT NULL PRIMARY KEY," +
+                "color varchar(30)" +
                 ");";
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
