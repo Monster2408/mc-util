@@ -12,9 +12,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import xyz.mlserver.mc.util.itemstack.OriginalItemStack;
 import xyz.mlserver.mc.util.skull.SkullVar;
 
-import java.util.HashMap;
-import java.util.UUID;
-
 public class LanguageUtil {
     private static Table<String, Language, String> languageTable;
 

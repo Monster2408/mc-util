@@ -1,7 +1,6 @@
 package xyz.mlserver.mls.event;
 
 import org.bukkit.entity.Player;
-import xyz.mlserver.java.lang.Language;
 import xyz.mlserver.java.sql.DataBase;
 import xyz.mlserver.mls.MLSEvent;
 
