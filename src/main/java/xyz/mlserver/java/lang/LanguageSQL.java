@@ -79,8 +79,8 @@ public class LanguageSQL {
 
     private void createTable() {
         String sql = "create table if not exists languages (" +
-                "uuid text NOT NULL PRIMARY KEY," +
-                "lang text default '" + Language.JAPANESE.getId() + "' not null" +
+                "uuid varchar(36) NOT NULL PRIMARY KEY," +
+                "lang varchar(100) default '" + Language.JAPANESE.getId() + "' not null" +
                 ");"
                 ;
         try(Connection con = dataBase.getDataSource().getConnection();
