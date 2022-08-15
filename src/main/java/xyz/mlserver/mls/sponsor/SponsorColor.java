@@ -104,9 +104,9 @@ public class SponsorColor {
     public ChatColor get(UUID uuid) { return get(uuid.toString(), null); }
 
     private void createTable() {
-        String sql = "create table if not exists sponsor (" +
+        String sql = "create table if not exists sponsor_color (" +
                 "uuid varchar(36) NOT NULL PRIMARY KEY," +
-                "color varchar(30)" +
+                "color varchar(100)" +
                 ");";
         try(Connection con = dataBase.getDataSource().getConnection();
             PreparedStatement prestat = con.prepareStatement(sql)) {
