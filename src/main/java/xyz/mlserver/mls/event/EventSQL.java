@@ -368,7 +368,7 @@ public class EventSQL {
     private void createTable() {
         String sql = "create table if not exists " + table_name + " (" +
                 "uuid varchar(36) NOT NULL PRIMARY KEY," +
-                "game int(1000) default '0' not null" +
+                "game int(1000) default '0' not null," +
                 "win int(1000) default '0' not null" +
                 ");"
                 ;
@@ -383,7 +383,7 @@ public class EventSQL {
     private void createTable(MLSEvent event) {
         String sql = "create table if not exists " + event.getDatabase() + " (" +
                 "uuid varchar(36) NOT NULL PRIMARY KEY," +
-                "game int(1000) default '0' not null" +
+                "game int(1000) default '0' not null," +
                 "win int(1000) default '0' not null" +
                 ");"
                 ;
