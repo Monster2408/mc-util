@@ -5,7 +5,8 @@ public enum MLSEvent {
     AOONI3_0("aooni3_0", "aooni3_0data", "青鬼ゲーム3.0"),
     AOONISCHOOL("aoonischool", "aoonischooldata", "青鬼スクール"),
     ONLINE("online", "onlinedata", "青鬼ONLINE in MC"),
-    Hueoni("hueoni", "hodata", "増え鬼ごっこ")
+    Hueoni("hueoni", "hodata", "増え鬼ごっこ"),
+    Takaoni("takaoni", "takadata", "高鬼ごっこ")
             {
         public String toString() {
             return this.name();
@@ -16,7 +17,7 @@ public enum MLSEvent {
     private final String database;
     private final String display;
 
-    private MLSEvent(String name, String database, String display) {
+    MLSEvent(String name, String database, String display) {
         this.name = name;
         this.database = database;
         this.display = display;

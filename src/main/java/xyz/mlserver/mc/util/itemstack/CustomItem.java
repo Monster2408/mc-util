@@ -1,6 +1,7 @@
 package xyz.mlserver.mc.util.itemstack;
 
 import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -24,14 +25,16 @@ public class CustomItem {
         this.itemMeta = itemStack.getItemMeta();
     }
 
-    public CustomItem setDisplayName(String displayName) {
-        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', displayName));
-        return this;
-    }
-
     public CustomItem(Material material, int id) {
         this.itemStack = new ItemStack(material, 1, (short) id);
         this.itemMeta = itemStack.getItemMeta();
+    }
+
+    public CustomItem(Material material, DyeColor dyeColor) { this(material, dyeColor.getWoolData()); }
+
+    public CustomItem setDisplayName(String displayName) {
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', displayName));
+        return this;
     }
 
     public CustomItem setAmount(int amount) {

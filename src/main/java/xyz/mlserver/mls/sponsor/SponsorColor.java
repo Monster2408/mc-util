@@ -19,6 +19,11 @@ public class SponsorColor {
         this.dataBase = dataBase;
     }
 
+    /**
+     * プレイヤーの登録色を登録する
+     * @param uuid 指定したプレイヤーのUUID({@link String})
+     * @param color 登録する{@link ChatColor}
+     */
     public void set(String uuid, ChatColor color) {
         createTable();
 
@@ -38,10 +43,26 @@ public class SponsorColor {
             e.printStackTrace();
         }
     }
+    /**
+     * プレイヤーの登録色を登録する
+     * @param uuid 指定したプレイヤーのUUID({@link UUID})
+     * @param color 登録する{@link ChatColor}
+     */
+    public void set(UUID uuid, ChatColor color) { set(uuid.toString(), color);}    /**
+     * プレイヤーの登録色を登録する
+     * @param player 指定したプレイヤー({@link Player})
+     * @param color 登録する{@link ChatColor}
+     */
 
-    public void set(UUID uuid, ChatColor color) { set(uuid.toString(), color);}
     public void set(Player player, ChatColor color) { set(player.getUniqueId().toString(), color);}
 
+    /**
+     * プレイヤーの登録色を取得する
+     * @deprecated 直観的でないため非推奨
+     * @param uuid 指定したプレイヤーのUUID({@link String})
+     * @param defaultColor データベースに記録がなかった場合に指定した{@link ChatColor}が返ってくる
+     * @return プレイヤーの登録 {@link ChatColor}
+     */
     public ChatColor load(String uuid, ChatColor defaultColor) {
         createTable();
 
@@ -69,10 +90,35 @@ public class SponsorColor {
         return color;
     }
 
+    /**
+     * プレイヤーの登録色を取得する
+     * @deprecated 直観的でないため非推奨
+     * @param uuid 指定したプレイヤーのUUID({@link UUID})
+     * @param defaultColor データベースに記録がなかった場合に指定した{@link ChatColor}が返ってくる
+     * @return プレイヤーの登録 {@link ChatColor}
+     */
     public ChatColor load(UUID uuid, ChatColor defaultColor) { return load(uuid.toString(), defaultColor); }
+    /**
+     * プレイヤーの登録色を取得する
+     * @deprecated 直観的でないため非推奨
+     * @param uuid 指定したプレイヤーのUUID({@link String})
+     * @return プレイヤーの登録 {@link ChatColor}
+     */
     public ChatColor load(String uuid) { return load(uuid, null); }
+    /**
+     * プレイヤーの登録色を取得する
+     * @deprecated 直観的でないため非推奨
+     * @param uuid 指定したプレイヤーのUUID({@link UUID})
+     * @return プレイヤーの登録 {@link ChatColor}
+     */
     public ChatColor load(UUID uuid) { return load(uuid.toString(), null); }
 
+    /**
+     * プレイヤーの登録色を取得する
+     * @param uuid 指定したプレイヤーのUUID({@link String})
+     * @param defaultColor データベースに記録がなかった場合に指定した{@link ChatColor}が返ってくる
+     * @return プレイヤーの登録 {@link ChatColor}
+     */
     public ChatColor get(String uuid, ChatColor defaultColor) {
         createTable();
 
@@ -98,9 +144,24 @@ public class SponsorColor {
         }
         return color;
     }
-
+    /**
+     * プレイヤーの登録色を取得する
+     * @param uuid 指定したプレイヤーのUUID({@link UUID})
+     * @param defaultColor データベースに記録がなかった場合に指定した{@link ChatColor}が返ってくる
+     * @return プレイヤーの登録 {@link ChatColor}
+     */
     public ChatColor get(UUID uuid, ChatColor defaultColor) { return get(uuid.toString(), defaultColor); }
+    /**
+     * プレイヤーの登録色を取得する
+     * @param uuid 指定したプレイヤーのUUID({@link String})
+     * @return プレイヤーの登録 {@link ChatColor}
+     */
     public ChatColor get(String uuid) { return get(uuid, null); }
+    /**
+     * プレイヤーの登録色を取得する
+     * @param uuid 指定したプレイヤーのUUID({@link UUID})
+     * @return プレイヤーの登録 {@link ChatColor}
+     */
     public ChatColor get(UUID uuid) { return get(uuid.toString(), null); }
 
     private void createTable() {
