@@ -49,7 +49,6 @@ public class GlowAPI extends JavaPlugin {
     private static final WrapperPlayServerScoreboardTeam.TeamPush DEFAULT_TEAM_PUSH = WrapperPlayServerScoreboardTeam.TeamPush.ALWAYS;
     private static final Serializer BYTE_SERIALIZER = Registry.get(Byte.class);
 
-    @Getter
     private static final Map<UUID, GlowData> dataMap = new ConcurrentHashMap<>();
 
     private static final Listener playerJoinListener = new PlayerJoinListener();
@@ -57,7 +56,6 @@ public class GlowAPI extends JavaPlugin {
 
     private static final PacketListener entityMetadataListener = new EntityMetadataListener();
 
-    @Getter
     private ProtocolManager protocolManager;
     private AsynchronousManager asynchronousManager;
     private AsyncListenerHandler entityMetadataListenerHandler;
@@ -86,7 +84,6 @@ public class GlowAPI extends JavaPlugin {
         WHITE(ChatColor.WHITE),
         NONE(ChatColor.RESET);
 
-        @Getter
         final ChatColor chatColor;
 
         Color(@NotNull ChatColor chatColor) {
@@ -103,13 +100,21 @@ public class GlowAPI extends JavaPlugin {
         }
 
         @NotNull
+        public ChatColor getChatColor() {
+            return this.chatColor;
+        }
+
+        @NotNull
         public static Stream<Color> getValues() {
             return Arrays.stream(Color.values());
         }
+
     }
 
     @NotNull
-    public static GlowAPI getPlugin() { return getPlugin(GlowAPI.class); }
+    public static GlowAPI getPlugin() {
+        return getPlugin(GlowAPI.class);
+    }
 
     @Override
     public void onEnable() {
@@ -199,6 +204,10 @@ public class GlowAPI extends JavaPlugin {
                 throw new RuntimeException("Unable to send team packet to player " + player.toString(), e);
             }
         });
+    }
+
+    public ProtocolManager getProtocolManager() {
+        return protocolManager;
     }
 
     @SuppressWarnings("unused")
