@@ -11,6 +11,9 @@ xyz.mlserver.java.sql.mysql
 xyz.mlserver.java.sql.sqlite
 xyz.mlserver.mc.util
 xyz.mlserver.mc.util.command
+xyz.mlserver.mc.util.glow
+xyz.mlserver.mc.util.glow.listeners
+xyz.mlserver.mc.util.glow.packetwrappers
 xyz.mlserver.mc.util.itemstack
 xyz.mlserver.mc.util.picture
 xyz.mlserver.mc.util.skull
@@ -19,12 +22,3 @@ xyz.mlserver.mls
 xyz.mlserver.mls.event
 xyz.mlserver.mls.listener
 xyz.mlserver.mls.sponsor
-xyz.mlserver.util
-xyz.mlserver.util.collection
-xyz.mlserver.util.function
-xyz.mlserver.util.magic
-xyz.mlserver.util.native_util
-xyz.mlserver.util.reflect
-xyz.mlserver.util.reflections
-xyz.mlserver.util.serialization
-xyz.mlserver.util.yaml
