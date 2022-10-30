@@ -18,17 +18,16 @@
  */
 package xyz.mlserver.mc.util.glow.packetwrappers;
 
-import java.util.List;
-
-import org.bukkit.World;
-import org.bukkit.entity.Entity;
-
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.WrappedWatchableObject;
+import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class WrapperPlayServerEntityMetadata extends AbstractPacket {
     public static final PacketType TYPE = PacketType.Play.Server.ENTITY_METADATA;

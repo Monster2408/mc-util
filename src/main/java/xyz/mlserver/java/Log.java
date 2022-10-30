@@ -1,9 +1,9 @@
 package xyz.mlserver.java;
 
+import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
-import xyz.mlserver.util.Validate;
 
 import java.io.File;
 import java.io.FileWriter;
