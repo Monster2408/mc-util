@@ -29,3 +29,9 @@
 - スポンサーかどうかは`sponsor.tier1`，`sponsor.tier1`，`sponsor.tier1`を持っているかで判断
 - 判定基準はMinecraftアカウントと同期しているDiscordアカウントがスポンサー役職を持っているかで判定
 - Discordでのスポンサー処理は外部サービスである [Ko-fi](https://ko-fi.com/mlserver) で行う
+
+# JavaDocの生成
+JavaバージョンとJavadocバージョンの違いでエラーが出たため標準の機能でなく`mvn`を使用することになったため以下コマンドを使用すること
+```shell
+mvn javadoc:javadoc
+```
