@@ -73,10 +73,10 @@
         </repository>
 
         <!-- ViaVersion -->
-        <repository>
-            <id>viaversion-repo</id>
-            <url>https://repo.viaversion.com</url>
-        </repository>
+<!--        <repository>-->
+<!--            <id>viaversion-repo</id>-->
+<!--            <url>https://repo.viaversion.com</url>-->
+<!--        </repository>-->
 
         <!-- SkullCreator -->
         <repository>
@@ -122,11 +122,11 @@
         </dependency>
 
         <!-- ViaVersion -->
-        <dependency>
-            <groupId>com.viaversion</groupId>
-            <artifactId>viaversion-api</artifactId>
-            <version>LATEST</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.viaversion</groupId>-->
+<!--            <artifactId>viaversion-api</artifactId>-->
+<!--            <version>LATEST</version>-->
+<!--        </dependency>-->
 
         <!-- SkullCreator -->
         <dependency>
